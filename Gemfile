@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.0'
-gem 'sqlite3'
 gem 'jquery-rails'
 
 # Gems used only for assets and not required
@@ -12,5 +11,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+group :development, :test do
+  gem 'sqlite3'
+end
