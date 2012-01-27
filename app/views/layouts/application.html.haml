@@ -13,8 +13,10 @@
           = image_tag 'logo.png'
       .row
         = yield
-      .row
+      .row.footer
         %div(style="float:left")
-          Terms of Use &nbsp; | &nbsp; Privacy Policy
+          %a(href='#') Terms of Use
+          &nbsp; | &nbsp; 
+          %a(href='#') Privacy Policy
         %div(style="float:right")
           &copy; 2012 Collabea
