@@ -9,6 +9,9 @@
   %body
     .layout-978
       .row
+        - flash.each do |key, value|
+          %div(class="flash #{key}")
+      .row
         .col5
           %a(href='/')
             = image_tag 'logo.png'
@@ -23,6 +26,9 @@
               %li &nbsp; &middot; &nbsp;
               %li
                 = link_to "Contact", "contact"
+              %li &nbsp; &middot; &nbsp;
+              %li
+                = link_to "Sign In", new_user_session_path
         .row-end
       .row.content
         = yield
