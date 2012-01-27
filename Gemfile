@@ -4,6 +4,7 @@ gem 'rails', '3.2.0'
 gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails', :group => :development
+gem 'bourbon'
 
 group :production do
   gem 'pg'
