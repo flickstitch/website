@@ -1,0 +1,37 @@
+@import "bourbon";
+@import "reset";
+@import "global";
+@import "pages";
+@import "978";
+
+body {
+  font-family: $font-family;
+  color: $font-color;
+}
+
+body .footer {
+  font-size: 13px;
+
+  a {
+    text-decoration: none;
+
+    &:link {
+      color: #339966;
+      style: none;
+    }
+
+    &:visited {
+      color: #339966;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:active {
+      color: #339966;
+    }
+  }
+
+  color: #999;
+}
