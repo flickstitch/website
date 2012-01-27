@@ -7,6 +7,13 @@
     = csrf_meta_tag
 
   %body
-    %div.layout-978
-      %div.row
+    .layout-978
+      .row
+        = image_tag 'logo.png'
+      .row
         = yield
+      .row
+        %div(style="float:left")
+          Terms of Use &nbsp; | &nbsp; Privacy Policy
+        %div(style="float:right")
+          &copy; 2012 Collabea
