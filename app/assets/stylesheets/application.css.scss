@@ -11,21 +11,17 @@ body {
   .content {
     height: 200px;
   }
-}
-
-body .footer {
-  font-size: 13px;
 
   a {
     text-decoration: none;
 
     &:link {
-      color: #339966;
+      color: $link-color;
       style: none;
     }
 
     &:visited {
-      color: #339966;
+      color: $link-color;
     }
 
     &:hover {
@@ -33,9 +29,14 @@ body .footer {
     }
 
     &:active {
-      color: #339966;
+      color: $link-color;
     }
   }
+}
 
-  color: #999;
+body .footer {
+  padding: 5px;
+  border-top: solid #ccc 2px;
+  color: #777;
+  font-size: 13px;
 }
