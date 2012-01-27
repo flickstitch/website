@@ -4,9 +4,28 @@
 @import "pages";
 @import "978";
 
+@mixin error-box {
+  padding: 0.8em;
+  margin-bottom: 1em;
+  color: $error-color;
+  background-color: $error-background-color;
+  border: solid $error-border-color 2px;
+  border-image: initial;
+}
+
+@mixin login-fields($width: 300px) {
+  font-size: $font-size;
+  line-height: 25px;
+  width: $width;
+  @include border-radius(3px);
+  color: #292D2E;
+  padding: 0.4em 0.8em;
+}
+
 body {
   font-family: $font-family;
   font-size: $font-size;
+  line-height: $line-height;
   color: $font-color;
 
   .content {
@@ -35,7 +54,7 @@ body {
   }
 
   p {
-    margin-bottom: 15px;
+    margin-bottom: $line-break-height;
   }
 
   #nav-menu {
@@ -50,16 +69,11 @@ body {
 
   h2 {
     font-size: 22px;
-    margin-bottom: 15px;
+    margin-bottom: $line-break-height;
   }
 
   .alert {
-    padding: 0.8em;
-    margin-bottom: 1em;
-    color: $error-color;
-    background-color: $error-background-color;
-    border: solid $error-border-color 2px;
-    border-image: initial;
+    @include error-box;
   }
 
   .footer {
@@ -68,4 +82,41 @@ body {
     color: #777;
     font-size: 13px;
   }
+
+  form.new_user {
+    input {
+      margin-bottom: $line-break-height;
+      @include login-fields
+    }
+    
+    [type="checkbox"] {
+      width: 20px;
+    }
+
+    [type="submit"] {
+      @include button;
+      font-size: $font-size * 1.05;
+      font-weight: normal;
+      width: 326px;
+    }
+
+    .field_with_errors {
+      @include inline-block;
+    }
+
+    #error_explanation {
+      @include error-box;
+      h2 {
+        font-size: 1.2em;
+      }
+      ul {
+        list-style-type: disc;
+
+        li {
+          margin-left: 3em; 
+        }
+      }
+    }
+  }
+
 }
