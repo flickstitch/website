@@ -3,6 +3,9 @@ Collabio::Application.routes.draw do
   # just remember to delete public/index.html.
   root :to => 'pages#home'
 
+  match "terms" => 'pages#terms'
+  match "privacy" => 'pages#privacy'
+
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
