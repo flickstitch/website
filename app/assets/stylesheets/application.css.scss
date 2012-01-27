@@ -7,6 +7,10 @@
 body {
   font-family: $font-family;
   color: $font-color;
+
+  .content {
+    height: 200px;
+  }
 }
 
 body .footer {
