@@ -9,14 +9,27 @@
   %body
     .layout-978
       .row
-        %a(href='/')
-          = image_tag 'logo.png'
+        .col5
+          %a(href='/')
+            = image_tag 'logo.png'
+        .col7
+          #nav-menu
+            %ul
+              %li 
+                %a(href='#') Videos
+              %li &nbsp; &middot; &nbsp;
+              %li
+                = link_to "About", "about"
+              %li &nbsp; &middot; &nbsp;
+              %li
+                = link_to "Contact", "contact"
+        .row-end
       .row.content
         = yield
       .row.footer
         %div(style="float:left")
           = link_to "Terms of Use", "terms"
-          &nbsp; | &nbsp; 
+          &nbsp; &middot; &nbsp; 
           = link_to "Privacy Policy", "privacy"
         %div(style="float:right")
           &copy; 2012 Collabea
