@@ -11,6 +11,7 @@
       .row
         - flash.each do |key, value|
           %div(class="flash #{key}")
+            = value
       .row
         .col5
           %a(href='/')
