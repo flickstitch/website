@@ -37,26 +37,35 @@ body {
   p {
     margin-bottom: 15px;
   }
-}
 
-#nav-menu {
-  list-style: none;
-  padding: 0;
-  margin: 38px 0 0 0;
+  #nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 38px 0 0 0;
 
-  li {
-    display: inline;
+    li {
+      display: inline;
+    }
   }
-}
 
-h3 {
-  font-size: 22px;
-  margin-bottom: 15px;
-}
+  h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
 
-body .footer {
-  padding: 5px;
-  border-top: solid #ccc 2px;
-  color: #777;
-  font-size: 13px;
+  .alert {
+    padding: 0.8em;
+    margin-bottom: 1em;
+    color: $error-color;
+    background-color: $error-background-color;
+    border: solid $error-border-color 2px;
+    border-image: initial;
+  }
+
+  .footer {
+    padding: 5px;
+    border-top: solid #ccc 2px;
+    color: #777;
+    font-size: 13px;
+  }
 }
