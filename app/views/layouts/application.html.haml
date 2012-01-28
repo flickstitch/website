@@ -34,10 +34,9 @@
       .row.content
         = yield
         %br
-      .row.footer
-        %div(style="float:left")
+      .row
+        .footer
           = link_to "Terms of Use", terms_path
           &nbsp; &middot; &nbsp; 
           = link_to "Privacy Policy", privacy_path
-        %div(style="float:right")
           &copy; 2012 Collabea

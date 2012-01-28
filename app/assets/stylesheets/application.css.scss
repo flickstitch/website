@@ -77,10 +77,9 @@ body {
   }
 
   .footer {
-    padding: 5px;
-    border-top: solid #ccc 2px;
+    background-color: #ccc;
     color: #777;
-    font-size: 13px;
+    text-align: right;
   }
 
   // devise authentication form
