@@ -83,7 +83,7 @@ body {
   }
 
   // devise authentication form
-  form.new_user {
+  form {
     input {
       margin-bottom: $line-break-height;
       @include login-fields
