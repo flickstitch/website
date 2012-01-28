@@ -4,7 +4,7 @@
 @import "pages";
 @import "978";
 
-@mixin error-box {
+@mixin flash-alert {
   padding: 0.8em;
   margin-bottom: 1em;
   color: $error-color;
@@ -13,7 +13,7 @@
   border-image: initial;
 }
 
-@mixin notice-box {
+@mixin flash-notice {
   padding: 0.8em;
   margin-bottom: 1em;
   color: $notice-color;
@@ -82,11 +82,11 @@ body {
   }
 
   .flash-alert {
-    @include error-box;
+    @include flash-alert;
   }
 
   .flash-notice {
-    @include notice-box;
+    @include flash-notice;
   }
 
   .footer {
@@ -118,7 +118,7 @@ body {
     }
 
     #error_explanation {
-      @include error-box;
+      @include flash-alert;
       h2 {
         font-size: 1.2em;
       }
