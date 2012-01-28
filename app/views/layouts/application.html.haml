@@ -29,11 +29,7 @@
                 = link_to "Contact", contact_path
               %li &nbsp; &middot; &nbsp;
               %li
-                - if user_signed_in?
-                  = link_to "Log Off", destroy_user_session_path, :method => :delete
-                  = current_user.email
-                - else
-                  = link_to "Sign In", new_user_session_path
+                = render :partial => "shared/signin_nav"
         .row-end
       .row
         .content
