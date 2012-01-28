@@ -13,6 +13,15 @@
   border-image: initial;
 }
 
+@mixin notice-box {
+  padding: 0.8em;
+  margin-bottom: 1em;
+  color: $notice-color;
+  background-color: $notice-background-color;
+  border: solid $notice-border-color 2px;
+  border-image: initial;
+}
+
 @mixin login-fields($width: 300px) {
   font-size: $font-size;
   line-height: 25px;
@@ -74,6 +83,10 @@ body {
 
   .alert {
     @include error-box;
+  }
+
+  .notice {
+    @include notice-box;
   }
 
   .footer {
