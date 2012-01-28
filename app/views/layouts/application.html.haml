@@ -35,9 +35,10 @@
                 - else
                   = link_to "Sign In", new_user_session_path
         .row-end
-      .row.content
-        = yield
-        %br
+      .row
+        .content
+          = yield
+          %br
       .row
         .footer
           = link_to "Terms of Use", terms_path
