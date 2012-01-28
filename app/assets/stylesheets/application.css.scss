@@ -83,6 +83,7 @@ body {
     font-size: 13px;
   }
 
+  // devise authentication form
   form.new_user {
     input {
       margin-bottom: $line-break-height;
@@ -94,7 +95,7 @@ body {
     }
 
     [type="submit"] {
-      @include button;
+      @include button(pill);
       font-size: $font-size * 1.05;
       font-weight: normal;
       width: 326px;
