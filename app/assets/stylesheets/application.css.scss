@@ -81,11 +81,11 @@ body {
     margin-bottom: $line-break-height;
   }
 
-  .alert {
+  .flash-alert {
     @include error-box;
   }
 
-  .notice {
+  .flash-notice {
     @include notice-box;
   }
 
