@@ -28,6 +28,10 @@ body {
   line-height: $line-height;
   color: $font-color;
 
+  i {
+    font-style: italic;
+  }
+
   .content {
     min-height: 200px;
   }
@@ -85,6 +89,12 @@ body {
     color: #777;
     text-align: right;
     padding-right: $padding-size;
+  }
+
+  #registration_username {
+    font-weight: bold;
+    font-size: $font-size * 1.5;
+    margin-bottom: $line-break-height;
   }
 
 }
