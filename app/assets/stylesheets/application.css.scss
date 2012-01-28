@@ -22,15 +22,6 @@
   border-image: initial;
 }
 
-@mixin login-fields($width: 300px) {
-  font-size: $font-size;
-  line-height: 25px;
-  width: $width;
-  @include border-radius(3px);
-  color: #292D2E;
-  padding: 0.4em 0.8em;
-}
-
 body {
   font-family: $font-family;
   font-size: $font-size;
@@ -95,39 +86,50 @@ body {
     text-align: right;
   }
 
-  // devise authentication form
-  form {
-    input {
-      margin-bottom: $line-break-height;
-      @include login-fields
-    }
-    
-    [type="checkbox"] {
-      width: 20px;
-    }
+}
 
-    [type="submit"] {
-      @include button(pill);
-      font-size: $font-size * 1.05;
-      font-weight: normal;
-      width: 326px;
+@mixin login-fields($width: 300px) {
+  font-size: $font-size;
+  line-height: 25px;
+  width: $width;
+  @include border-radius(3px);
+  color: #292D2E;
+  padding: 0.4em 0.8em;
+}
+
+// devise authentication form
+form {
+
+  input {
+    margin-bottom: $line-break-height;
+    @include login-fields
+  }
+  
+  [type="checkbox"] {
+    width: 20px;
+  }
+
+  [type="submit"] {
+    @include button(pill);
+    font-size: $font-size * 1.05;
+    font-weight: normal;
+    width: 326px;
+  }
+
+  .field_with_errors {
+    @include inline-block;
+  }
+
+  #error_explanation {
+    @include flash-alert;
+    h2 {
+      font-size: 1.2em;
     }
+    ul {
+      list-style-type: disc;
 
-    .field_with_errors {
-      @include inline-block;
-    }
-
-    #error_explanation {
-      @include flash-alert;
-      h2 {
-        font-size: 1.2em;
-      }
-      ul {
-        list-style-type: disc;
-
-        li {
-          margin-left: 3em; 
-        }
+      li {
+        margin-left: 3em; 
       }
     }
   }
