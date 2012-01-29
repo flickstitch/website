@@ -2,6 +2,6 @@
   = link_to "My Account", edit_user_registration_path
   &nbsp; &middot; &nbsp;
   = link_to "Log Off", destroy_user_session_path, :method => :delete
-  = current_user.email
+  = current_user.username
 - else
   = link_to "Sign In", new_user_session_path
