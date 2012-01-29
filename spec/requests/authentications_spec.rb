@@ -35,3 +35,34 @@ feature "Sign up new user" do
   end
 
 end
+
+feature "login" do
+  let(:user) { Factory.create(:user) }
+
+  scenario "with valid username/password" do
+    visit new_user_session_path
+
+    fill_in "user_email", :with => user.email
+    fill_in "user_password", :with => user.password
+
+    click_button "sign_in"
+
+    within ".flash-notice" do
+      page.should have_content "Signed in successfully"
+    end
+  end
+
+  scenario "with invalid password" do
+    visit new_user_session_path
+
+    fill_in "user_email", :with => user.email
+    fill_in "user_password", :with => user.password + 'wrong_password'
+
+    click_button "sign_in"
+
+    within ".flash-alert" do
+      page.should have_content "Invalid email or password"
+    end
+  end
+
+end
