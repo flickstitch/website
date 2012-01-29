@@ -50,6 +50,10 @@ feature "login" do
     within ".flash-notice" do
       page.should have_content "Signed in successfully"
     end
+
+    # show username
+    page.should have_content user.username
+    page.should_not have_content user.email
   end
 
   scenario "with invalid password" do
