@@ -67,6 +67,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.17.2)
     multi_json (1.0.4)
+    newrelic_rpm (3.3.1)
     orm_adapter (0.0.6)
     pg (0.12.2)
     polyglot (0.3.3)
@@ -127,6 +128,7 @@ DEPENDENCIES
   haml
   haml-rails
   jquery-rails
+  newrelic_rpm
   pg
   rails (= 3.2.0)
   sass-rails (~> 3.2.3)

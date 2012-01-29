@@ -6,6 +6,7 @@ gem 'haml'
 gem 'haml-rails', :group => :development
 gem 'bourbon'
 gem 'devise'
+gem 'newrelic_rpm'
 
 group :production do
   gem 'pg'
