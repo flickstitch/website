@@ -100,8 +100,7 @@ body {
 }
 
 @mixin login-fields($width: 300px) {
-  font-size: $font-size;
-  line-height: 25px;
+  font-size: $font-size * 1.3;
   width: $width;
   @include border-radius(3px);
   color: #292D2E;
