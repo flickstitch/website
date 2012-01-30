@@ -6,6 +6,10 @@
         - @video.errors.full_messages.each do |msg|
           %li= msg
 
+  -if params[:action] == 'edit'
+    %img(src="#{@video.thumbnail_url.sub('2.jpg','0.jpg')}")
+  %br
+
   = f.label :name
   %br
   = f.text_field :name
