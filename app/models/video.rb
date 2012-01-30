@@ -3,6 +3,7 @@ class Video < ActiveRecord::Base
   validate :from_youtube
 
   before_create :get_thumbnail_url
+  default_scope order('id desc')
 
   private
 
