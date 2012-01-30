@@ -7,7 +7,7 @@
           %li= msg
 
   -if params[:action] == 'edit'
-    %img(src="#{@video.thumbnail_url.sub('2.jpg','0.jpg')}")
+    <iframe width="560" height="315" src="http://www.youtube.com/embed/#{@video.video_id}" frameborder="0" allowfullscreen></iframe>
   %br
 
   = f.label :name
