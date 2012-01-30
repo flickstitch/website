@@ -6,14 +6,20 @@
         - @video.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :video_url
-    = f.text_field :video_url
-  .field
-    = f.label :thumbnail_url
-    = f.text_field :thumbnail_url
+  = f.label :name
+  %br
+  = f.text_field :name
+  %br
+
+  = f.label :video_url
+  %br
+  = f.text_field :video_url
+  %br
+
+  -unless params[:action] == 'new' || params[:action] == 'create'
+    Thumbnail url 
+    %br
+    = @video.thumbnail_url
+
   .actions
     = f.submit 'Save'
