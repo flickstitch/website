@@ -7,8 +7,7 @@
   %b Video url:
   = @video.video_url
 %p
-  %b Thumbnail url:
-  = @video.thumbnail_url
+  %img(src="#{@video.thumbnail_url.sub('2.jpg','0.jpg')}")
 
 = link_to 'Edit', edit_video_path(@video)
 \|
