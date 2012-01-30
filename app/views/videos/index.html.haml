@@ -16,7 +16,7 @@
         = link_to image_tag("#{video.thumbnail_url}"), video_path(video)
       %td= video.video_url
       %td= link_to 'Edit', edit_video_path(video)
-      %td= link_to 'Destroy', video, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Delete', video, :confirm => 'Are you sure?', :method => :delete
 
 %br
 
