@@ -1,0 +1,23 @@
+%h2 Listing videos
+
+%table
+  %tr
+    %th Name
+    %th
+    %th Video url
+    %th
+    %th
+    %th
+
+  - @videos.each do |video|
+    %tr
+      %td= video.name
+      %td
+        = link_to image_tag("#{video.thumbnail_url}"), video_path(video)
+      %td= video.video_url
+      %td= link_to 'Edit', edit_video_path(video)
+      %td= link_to 'Destroy', video, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Video', new_video_path

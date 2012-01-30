@@ -1,0 +1,14 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @video.name
+%p
+  %b Video url:
+  = @video.video_url
+%p
+  %img(src="#{@video.thumbnail_url.sub('2.jpg','0.jpg')}")
+
+= link_to 'Edit', edit_video_path(@video)
+\|
+= link_to 'Back', videos_path

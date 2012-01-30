@@ -99,6 +99,23 @@ body {
 
 }
 
+table {
+  th {
+    text-align: left;
+    min-width: 100px;
+    background-color: #ddd;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding-left: 5px;
+  }
+  
+  td {
+    border-bottom: 1px solid #E7E7E7;
+    vertical-align: top;
+    padding-left: 5px;
+  }
+}
+
 @mixin login-fields($width: 300px) {
   font-size: $font-size * 1.3;
   width: $width;
