@@ -2,7 +2,7 @@ class Video < ActiveRecord::Base
   validates :video_url, :presence => true
   validate :from_youtube
 
-  before_save :get_video_id, :get_thumbnail_url
+  before_save :set_video_id, :set_thumbnail_url
 
   default_scope order('id desc')
 
@@ -17,33 +17,38 @@ class Video < ActiveRecord::Base
     end
   end
 
-  def get_video_id
+  def set_video_id
     video_id = 0
     uri = URI.parse(self.video_url)
 
     if uri.host.include?('youtube.com')
       query = CGI.parse(uri.query)
-      video_id = query['v'][0]
+      unless query['v'].empty?
+        video_id = query['v'][0]
+      end
     elsif uri.host.include?('youtu.be')
-      video_id = uri.path[1..-1]
-    else
-      raise "cannot figure out video id for: #{self.video_url}"
+      # youtube video id's are 11 chars (12 cuz of the / char in path)
+      if uri.path.length == 12
+        video_id = uri.path[1..-1]
+      end
     end
 
-    self.video_id = video_id
+    if video_id == 0
+      raise "cannot figure out video id for: #{self.video_url}"
+    else
+      self.video_id = video_id
+    end
   end
 
-  def get_thumbnail_url
+  def set_thumbnail_url
     thumbnail_url = ''
     uri = URI.parse(self.video_url)
 
     if uri.host.include?('youtube.com') || uri.host.include?('youtu.be')
-      thumbnail_url = "http://img.youtube.com/vi/#{self.video_id}/2.jpg"
+      self.thumbnail_url = "http://img.youtube.com/vi/#{self.video_id}/2.jpg"
     else
       raise "unable to parse thumbnail url for: #{self.video_url}"
     end
-
-    self.thumbnail_url = thumbnail_url
   end
 
 end
