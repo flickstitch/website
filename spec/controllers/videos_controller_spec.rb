@@ -24,7 +24,9 @@ describe VideosController do
   # Video. As you add validations to Video, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {
+      :video_url => "http://www.youtube.com/watch?v=dQLCO9JkVeE"
+    }
   end
   
   # This should return the minimal set of values that should be in the session
