@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
 
   def home
-    redirect_to videos_path
   end
 
   def about
