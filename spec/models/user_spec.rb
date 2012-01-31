@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe "user specs" do
+describe User do
   pending
 end
