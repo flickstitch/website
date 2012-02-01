@@ -14,10 +14,11 @@
       = button_to "past winners", videos_path, :method => :get
   .row-end
 .row
-  %hr
-  %table.dan
+  %hr.dashed
+  %table.videos
+    %tr
     - @videos.each do |video|
       %tr
-        %td
+        %td.video-col
           = link_to image_tag("#{video.thumbnail_url}"), video_path(video)
-
+        %td.name-col= link_to video.name, video_path(video)
