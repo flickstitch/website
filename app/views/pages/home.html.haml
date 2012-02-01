@@ -1,0 +1,23 @@
+.row
+  <iframe class='home-page' width="500" height="284" src="http://www.youtube.com/embed/Dl6Q7FkCMJw" frameborder="0" allowfullscreen></iframe>
+  %br
+
+.row
+  .col4
+    .what-is
+      = button_to "what is irolostreet?", about_path
+  .col4
+    .current-story
+      = button_to "current story", '#'
+  .col4
+    .this-week
+      = button_to "this week's submissions", '#'
+  .row-end
+.row
+  %hr
+  %table.dan
+    - @videos.each do |video|
+      %tr
+        %td
+          = link_to image_tag("#{video.thumbnail_url}"), video_path(video)
+

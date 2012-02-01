@@ -22,6 +22,12 @@
   border-image: initial;
 }
 
+@mixin ddd {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 body {
   font-family: $font-family;
   font-size: $font-size;
@@ -65,6 +71,8 @@ body {
     list-style: none;
     padding: 0;
     margin: 38px 0 0 0;
+    text-align: right;
+    vertical-align: top;
 
     li {
       display: inline;
@@ -98,6 +106,26 @@ body {
     margin-bottom: $line-break-height;
   }
 
+  iframe.home-page {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .what-is, .current-story, .this-week {
+    text-align: center;
+
+    input[type='submit'] {
+      @include button;
+      font-size: $font-size;
+      font-weight: normal;
+      height: 30px;
+      width: 220px;
+    }
+  }
+}
+
+table.dan {
+  width: 100%;
 }
 
 table {
