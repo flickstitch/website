@@ -5,13 +5,13 @@
 .row
   .col4
     .what-is
-      = button_to "what is irolostreet?", about_path
-  .col4
-    .current-story
-      = button_to "current story", '#'
+      = button_to "what is irolostreet?", about_path, :method => :get
   .col4
     .this-week
-      = button_to "this week's submissions", '#'
+      = button_to "this week's contest", '#', :method => :get
+  .col4
+    .current-story
+      = button_to "past winners", videos_path, :method => :get
   .row-end
 .row
   %hr
