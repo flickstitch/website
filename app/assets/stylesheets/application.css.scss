@@ -147,6 +147,10 @@ table.videos {
     padding-left: 0;
     width: 123px;
   }
+
+  td.edit, .delete {
+    width: 70px;
+  }
 }
 
 table {
@@ -209,6 +213,11 @@ form {
         margin-left: 3em; 
       }
     }
+  }
+
+  .text-area {
+    font-size: $font-size;
+    height: 200px;
   }
 
 }

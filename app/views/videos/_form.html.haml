@@ -20,6 +20,11 @@
   = f.text_field :video_url
   %br
 
+  = f.label :desc
+  %br
+  = f.text_area :desc, :class => 'text-area'
+  %br
+
   -unless params[:action] == 'new' || params[:action] == 'create'
     Thumbnail url 
     %br
