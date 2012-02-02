@@ -14,6 +14,11 @@ describe Role do
       ability = Ability.new(guest)
       ability.can?(:create, Video).should == false
     end
+
+    it 'cannot update videos' do
+      ability = Ability.new(guest)
+      ability.can?(:update, Video).should == false
+    end
   end
 
   describe "members" do
@@ -27,11 +32,14 @@ describe Role do
     it 'can edit owned videos' do
       ability = Ability.new(user)
       owned_vid = Factory.create(:video, :user => user)
-      ability.can?(:manage, Video).should == true
+      ability.can?(:manage, owned_vid).should == true
     end
 
     it "cannot edit someone else's video" do
-      
+      ability = Ability.new(user)
+      another_user = Factory.create(:user)
+      not_my_vid = Factory.create(:video, :user => another_user)
+      ability.can?(:manage, not_my_vid).should == false
     end
     
   end
