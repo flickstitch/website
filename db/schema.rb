@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120202021403) do
+ActiveRecord::Schema.define(:version => 20120202044319) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20120202021403) do
     t.datetime "updated_at",    :null => false
     t.string   "video_id"
     t.text     "desc"
+    t.integer  "user_id"
   end
 
 end

@@ -1,5 +1,8 @@
 class Video < ActiveRecord::Base
+  belongs_to :user
+
   validates :video_url, :presence => true
+  validates :user_id, :presence => true
   validate :from_youtube
 
   before_save :set_video_id, :set_thumbnail_url

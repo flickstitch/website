@@ -12,6 +12,7 @@
 %p
   <iframe width="560" height="315" src="http://www.youtube.com/embed/#{@video.video_id}" frameborder="0" allowfullscreen></iframe>
 
-= link_to 'Edit', edit_video_path(@video)
-\|
+- if can?(:update, @video)
+  = link_to 'Edit', edit_video_path(@video)
+  \|
 = link_to 'Back', videos_path

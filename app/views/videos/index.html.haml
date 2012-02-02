@@ -6,5 +6,6 @@
       %td.video-col= link_to image_tag("#{video.thumbnail_url}"), video_path(video)
       %td= link_to video.name, video_path(video)
       %td= video.desc
-      %td.edit= link_to 'Edit', edit_video_path(video)
-      %td.delete= link_to 'Delete', video, :confirm => 'Are you sure?', :method => :delete
+      - if can?(:update, video) && video.user_id == current_user.id
+        %td.edit= link_to 'Edit', edit_video_path(video)
+        %td.delete= link_to 'Delete', video, :confirm => 'Are you sure?', :method => :delete

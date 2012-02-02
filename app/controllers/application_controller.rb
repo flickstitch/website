@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
         
   # redirect when unauthorized
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to new_user_session_url, :alert => exception.message
+    if user_signed_in?
+      redirect_to root_path, :alert => "You don't have permission to do that."
+    else
+      redirect_to new_user_session_url, :alert => exception.message
+    end
   end
 end
