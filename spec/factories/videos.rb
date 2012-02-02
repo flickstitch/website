@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :video do
-    name "MyString"
-    video_url "MyString"
-    thumbnail_url "MyString"
+    association(:user)
+    sequence(:name) { |n| "video#{n}" }
+    video_url "http://www.badurl.com"
   end
 end
