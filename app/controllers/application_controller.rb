@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
 
   # redirect to current page after sign in
   def store_location
-    session[:user_return_to] = request.url unless params[:controller] == "devise/sessions"
+    # after registration is another special case - do not redirect to "current page"
+    session[:user_return_to] = request.url unless ["devise/sessions", "devise/registrations"].include?(params[:controller])
   end
 
   def after_sign_in_path_for(resource)
