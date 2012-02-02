@@ -8,6 +8,7 @@ gem 'bourbon'
 gem 'devise'
 gem 'newrelic_rpm'
 gem 'pry', :group => :development
+gem 'cancan'
 
 group :production do
   gem 'pg'

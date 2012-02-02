@@ -1,4 +1,7 @@
 class VideosController < ApplicationController
+  # cancan
+  load_and_authorize_resource
+
   # GET /videos
   # GET /videos.json
   def index

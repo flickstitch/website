@@ -3,3 +3,9 @@
 
 en:
   hello: "Hello world"
+  unauthorized:
+    manage:
+    new:
+      video: "Please sign in or register to add videos."
+    update:
+      video: "Please sign in or register to edit videos."
