@@ -5,4 +5,8 @@ FactoryGirl.define do
     sequence(:email) { |n| "person#{n}@email.com" }
     password "jjjjjj"
   end
+
+  factory :admin_user, :parent => :user do
+    roles { |r| [r.association(:admin_role)] }
+  end
 end
