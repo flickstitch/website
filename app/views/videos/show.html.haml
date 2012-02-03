@@ -5,7 +5,10 @@
   = @video.name
 %p
   %b Submitted by:
-  = @video.user.username
+  - if @video.user
+    = @video.user.username
+  - else
+    n/a
 %p
   %b Video url:
   = @video.video_url
