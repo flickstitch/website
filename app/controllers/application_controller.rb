@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   # redirect to current page after sign in
   def store_location
     # after registration is another special case - do not redirect to "current page"
-    logger.error "DDDDDDDDDDDDDDDDDDDDDDDDD #{params[:controller]}"
     session[:user_return_to] = request.url unless ["devise/passwords", "devise/sessions", "devise/registrations"].include?(params[:controller])
   end
 
