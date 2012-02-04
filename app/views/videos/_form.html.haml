@@ -20,6 +20,14 @@
   = f.text_field :name
   %br
 
+  Submitted by: 
+  -if @video.user
+    = @video.user.username
+  -else
+    n/a
+  %br
+  %br
+
   = f.label :video_url
   %br
   = f.text_field :video_url
