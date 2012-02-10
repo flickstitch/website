@@ -22,3 +22,5 @@
   = link_to 'Edit', edit_video_path(@video)
   \|
 = link_to 'Back', videos_path
+
+.fb-comments{ 'data-href' => request.fullpath, 'data-num-posts' => 5, 'data-width' => 470 }
