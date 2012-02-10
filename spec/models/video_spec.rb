@@ -2,6 +2,20 @@ require 'spec_helper'
 
 describe Video do
 
+# TODO cases to take care of in the future
+#invalid http://vimeo.com/3170953
+
+  describe "not from youtube or vimeo" do
+    it 'errors and is not valid' do
+      vid = Factory.build(:video, video_url:"http://www.you.com")
+      #vid2 = Factory.build(:video, video_url:"http://www.youtube.com")
+      expect {
+        vid.save!
+      }.to raise_error
+      vid.valid?.should == false
+    end
+  end
+
   describe "from youtube.com" do
     context 'valid video_id in url' do
       it 'gets valid video_id created' do
@@ -48,6 +62,22 @@ describe Video do
       expect {
         vid.save!
       }.to raise_error
+    end
+  end
+
+  describe "validate vimeo.com link" do
+    context 'valid video_id' do
+      it 'gets valid video_id created' do
+        vid = Factory.create(:video, video_url:"http://www.vimeo.com/31709533")
+        vid.video_id.should == "31709533"
+      end
+    end
+
+    context 'valid video_id in a group url' do
+      it 'gets valid video_id created' do
+        vid = Factory.create(:video, video_url:"http://vimeo.com/groups/01fx/videos/28546884")
+        vid.video_id.should == "28546884"
+      end
     end
   end
 
