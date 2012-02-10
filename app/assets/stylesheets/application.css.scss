@@ -1,223 +1,30 @@
-@import "bourbon";
-@import "reset";
 @import "global";
+@import "twitter/bootstrap";
 @import "pages";
 @import "978";
 
-@mixin flash-alert {
-  padding: 0.8em;
-  margin-bottom: 1em;
-  color: $error-color;
-  background-color: $error-background-color;
-  border: solid $error-border-color 2px;
-  border-image: initial;
-}
-
-@mixin flash-notice {
-  padding: 0.8em;
-  margin-bottom: 1em;
-  color: $notice-color;
-  background-color: $notice-background-color;
-  border: solid $notice-border-color 2px;
-  border-image: initial;
-}
-
-@mixin ddd {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 body {
-  font-family: $font-family;
-  font-size: $font-size;
-  line-height: $line-height;
-  color: $font-color;
-
-  i {
-    font-style: italic;
+  .home_video {
+    text-align: center;
   }
 
-  .content {
-    min-height: 200px;
-  }
-
-  a {
-    text-decoration: none;
-
-    &:link {
-      color: $link-color;
-      style: none;
-    }
-
-    &:visited {
-      color: $link-color;
-    }
-
-    &:hover {
-      text-decoration: underline;
-    }
-
-    &:active {
-      color: $link-color;
+  .home_btn {
+    text-align: center;
+    a {
+      width: 220px;
+      font-size: $font-size;
     }
   }
+}
 
-  p {
-    margin-bottom: $line-break-height;
-  }
-
-  #nav-menu {
-    list-style: none;
-    padding: 0;
-    margin: 38px 0 0 0;
-    text-align: right;
-    vertical-align: top;
-
-    li {
-      display: inline;
-    }
-  }
-
-  h2 {
-    font-size: 22px;
-    margin-bottom: $line-break-height;
-  }
-
-  .flash-alert {
-    @include flash-alert;
-  }
-
-  .flash-notice {
-    @include flash-notice;
-  }
-
-  .footer {
-    color: #777;
-    text-align: right;
-    padding-right: $padding-size;
-    margin-bottom: $line-break-height;
+form {
+  // video
+  textarea.video-desc {
+    width: 400px;
+    height: 70px;
   }
 
   #registration_username {
-    font-weight: bold;
     font-size: $font-size * 1.5;
-    margin-bottom: $line-break-height;
   }
-
-  iframe.home-page {
-    display: block;
-    margin: 0 auto;
-  }
-
-  .what-is, .current-story, .this-week {
-    text-align: center;
-
-    input[type='submit'] {
-      @include button;
-      font-size: $font-size;
-      font-weight: normal;
-      height: 30px;
-      width: 220px;
-    }
-  }
-}
-
-// gradient transparent
-hr.gradient {
-  border: 0;
-  height: 1px;
-  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
-  background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
-  background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
-  background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
-}
-
-/* Double-color dashed line */
-hr.dashed {
-  border: 0;
-  border-bottom: 1px dashed #ccc;
-  background: #999;
-}
-
-table.videos {
-  width: 100%;
-
-  td.video-col {
-    padding-left: 0;
-    width: 123px;
-  }
-
-  td.edit, .delete {
-    width: 70px;
-  }
-}
-
-table {
-  th {
-    text-align: left;
-    min-width: 100px;
-    background-color: #ddd;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    padding-left: 5px;
-  }
-  
-  td {
-    border-bottom: 1px solid #E7E7E7;
-    vertical-align: top;
-    padding-left: 5px;
-  }
-}
-
-@mixin login-fields($width: 300px) {
-  font-size: $font-size * 1.3;
-  width: $width;
-  @include border-radius(3px);
-  color: #292D2E;
-  padding: 0.4em 0.8em;
-}
-
-// devise authentication form
-form {
-
-  input {
-    margin-bottom: $line-break-height;
-    @include login-fields
-  }
-  
-  [type="checkbox"] {
-    width: 20px;
-  }
-
-  [type="submit"] {
-    @include button(pill);
-    font-size: $font-size * 1.05;
-    font-weight: normal;
-    width: 326px;
-  }
-
-  .field_with_errors {
-    @include inline-block;
-  }
-
-  #error_explanation {
-    @include flash-alert;
-    h2 {
-      font-size: 1.2em;
-    }
-    ul {
-      list-style-type: disc;
-
-      li {
-        margin-left: 3em; 
-      }
-    }
-  }
-
-  .text-area {
-    font-size: $font-size;
-    height: 200px;
-  }
-
 }

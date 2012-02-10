@@ -10,38 +10,28 @@
 
   -if params[:action] == 'edit'
     <iframe width="560" height="315" src="http://www.youtube.com/embed/#{@video.video_id}" frameborder="0" allowfullscreen></iframe>
-  %br
+    %br
+    .delete= link_to 'Delete', @video, :confirm => 'Are you sure?', :method => :delete
+    %br
 
-  .delete= link_to 'Delete', @video, :confirm => 'Are you sure?', :method => :delete
-  %br
+    Submitted by: 
+    -if @video.user
+      = @video.user.username
+    -else
+      n/a
+    %br
+    %br
 
-  = f.label :name
-  %br
+  = f.label "Video name"
   = f.text_field :name
   %br
 
-  Submitted by: 
-  -if @video.user
-    = @video.user.username
-  -else
-    n/a
-  %br
-  %br
-
   = f.label :video_url
-  %br
   = f.text_field :video_url
   %br
 
   = f.label :desc
-  %br
-  = f.text_area :desc, :class => 'text-area'
+  = f.text_area :desc, :class => 'video-desc'
   %br
 
-  -unless params[:action] == 'new' || params[:action] == 'create'
-    Thumbnail url 
-    %br
-    = @video.thumbnail_url
-
-  .actions
-    = f.submit 'Save'
+  %button.btn(type="submit") Save

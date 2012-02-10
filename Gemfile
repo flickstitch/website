@@ -4,7 +4,6 @@ gem 'rails', '3.2.0'
 gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails', :group => :development
-gem 'bourbon'
 gem 'devise'
 gem 'newrelic_rpm'
 gem 'pry', :group => :development
@@ -20,6 +19,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'less-rails-bootstrap'
 end
 
 group :development, :test do

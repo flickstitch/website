@@ -1,25 +1,25 @@
-.row
+.home_video
   <iframe class='home-page' width="500" height="284" src="http://www.youtube.com/embed/Dl6Q7FkCMJw" frameborder="0" allowfullscreen></iframe>
-  %br
+%br
 
 .row
-  .col4
-    .what-is
-      = button_to "what is irolostreet?", about_path, :method => :get
-  .col4
-    .this-week
-      = button_to "this week's contest", '#', :method => :get
-  .col4
-    .current-story
-      = button_to "past winners", videos_path, :method => :get
+  .span4
+    .home_btn
+      = link_to "what is irolostreet?", about_path, { class:'btn btn-primary', :method => :get }
+  .span4
+    .home_btn
+      = link_to "this week's contest", '#', { class:'btn btn-primary', :method => :get }
+  .span4
+    .home_btn
+      = link_to "past winners", videos_path, { class:'btn btn-primary', :method => :get }
   .row-end
-.row
-  %hr.dashed
-  %table.videos
+
+%hr
+%table.videos
+  %tr
+  - @videos.each do |video|
     %tr
-    - @videos.each do |video|
-      %tr
-        %td.video-col
-          = link_to image_tag("#{video.thumbnail_url}"), video_path(video)
-        %td.name-col= link_to video.name, video_path(video)
-        %td= video.desc
+      %td
+        = link_to image_tag("#{video.thumbnail_url}"), video_path(video)
+      %td= link_to video.name, video_path(video)
+      %td= video.desc
