@@ -80,7 +80,7 @@ class VideosController < ApplicationController
     @video.destroy
 
     respond_to do |format|
-      format.html { redirect_to videos_url }
+      format.html { redirect_to videos_url, notice: 'Video successfully deleted.' }
       format.json { head :no_content }
     end
   end
