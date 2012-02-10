@@ -38,7 +38,8 @@
 
     .container
       - flash.each do |type, message|
-        %div.alert{ :class => "alert-#{twitterized_type(type)}" }
+        %div.alert.fade.in{ :class => "alert-#{twitterized_type(type)}" }
+          %a.close(data-dismiss="alert") x
           = message
       = yield
     
