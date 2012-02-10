@@ -1,7 +1,10 @@
 !!! 5
 %html{:lang => "en"}
   %head
-    %meta{ :property => "fb:app_id", :content => "198608693491491" }
+    :plain
+      <meta property="fb:admins" content="100002178729145"/>
+      <meta property="fb:app_id" content="198608693491491"/>
+
     %meta{:charset => "utf-8"}/
     %title= content_for?(:title) ? yield(:title) : "Irolo St."
     = csrf_meta_tags
