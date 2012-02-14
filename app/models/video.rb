@@ -7,7 +7,7 @@ class Video < ActiveRecord::Base
 
   before_save :set_video_id, :set_thumbnail_url
 
-  default_scope order('id desc')
+  default_scope where(:visible => true).order('id desc')
 
   private
 
