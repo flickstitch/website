@@ -30,6 +30,11 @@
   = f.text_field :video_url
   %br
 
+  -if current_user.has_role?(:admin) || current_user.has_role?(:manager)
+    %p
+      = f.check_box :visible
+      = f.label :visible
+
   = f.label :desc
   = f.text_area :desc, :class => 'video-desc'
   %br
