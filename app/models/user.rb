@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   validates :username, :format => { :with => /^[a-zA-Z0-9_]{3,20}$/, 
     :message => "must be combination of numbers and/or letters between 3 to 20 characters long" }
 
+  # roles are :admin, :manager
   def has_role?(role_sym)
     roles.any? { |r| r.name.underscore.to_sym == role_sym }
   end
