@@ -3,13 +3,18 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-  #$('.votes > a > img').click ->
-    #toggle_vote_image($(this), true)
+  $('.votes > a > img').click ->
+    toggle_vote_image($(this), true)
 
-  console.log 'begin'
+  # update href on vote link; doesn't matter if success or failure so use "complete" status
+  $('.votes > a').bind 'ajax:complete', ->
+    original_href = $(this).attr('href')
+    if original_href.indexOf('_up') <= -1
+      new_href = original_href.replace /_down/, '_up'
+    else
+      new_href = original_href.replace /_up/, '_down'
 
-  $('.votedan').bind 'ajax:success', ->
-    alert(status)
+    $(this).attr('href', new_href)
 
   # toggle thumbs up image between grey and blue
   # the toggle happens immediately to make the site 
