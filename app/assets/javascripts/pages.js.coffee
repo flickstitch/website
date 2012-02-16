@@ -29,11 +29,12 @@ jQuery ->
     image_src_a = original_image.split('/')
     image_path = image_src_a[0..(image_src_a.length - 2)]
     image_src = image_src_a[image_src_a.length - 1]
+    console.log image_src
 
     if index <= -1
-      toggle_image = image_src.replace /.png/, '_current.png'
+      toggle_image = image_src.replace '.', '_current.'
     else
-      toggle_image = image_src.replace /_current.png/, '.png'
+      toggle_image = image_src.replace '_current.', '.'
 
     image_path.push(toggle_image)
     toggle_image = image_path.join('/')
