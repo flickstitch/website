@@ -4,9 +4,27 @@
   - @videos.each do |video|
     %tr.video
       %td.votes
-        = link_to image_tag(asset_path("vote_up.png")), vote_up_video_path(video), { :method => :post, :remote => true, :id => "vote_link_#{video.id}" }
+        :ruby
+          # show appropriate image based on whether or not video has
+          # been voted on by current_user
+          vote_image = ''
+          vote_link = ''
+
+          if current_user and current_user.voted_for? video
+            vote_image = "vote_up_current.png"
+            vote_link = vote_down_video_path(video)
+          else
+            vote_image = "vote_up.png"
+            vote_link = vote_up_video_path(video)
+          end
+
+        -if current_user
+          = link_to image_tag(asset_path(vote_image)), vote_link, { :method => :post, :remote => true, :id => "vote_link_#{video.id}" }
+        -else
+          .cannot-vote= image_tag asset_path(vote_image)
+
         .vote-count
-          = video.id
+          = video.votes_for
       %td.thumb= link_to image_tag("#{video.thumbnail_url}"), video_path(video)
       %td
         .title
