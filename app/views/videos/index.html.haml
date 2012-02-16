@@ -41,3 +41,8 @@
           = link_to 'Edit', edit_video_path(video)
         -else
           &nbsp;
+
+-# keep track of image names to use in js
+-# (often changes cuz of asset pipeline)
+<input id="vote_up_image" type="hidden" value="#{asset_path('vote_up.png')}">
+<input id="vote_up_current_image" type="hidden" value="#{asset_path('vote_up_current.png')}">

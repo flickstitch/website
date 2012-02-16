@@ -24,20 +24,15 @@ jQuery ->
   # seem fast and responsive
   toggle_vote_image = (vote_image) ->
     toggle_image = ''
-    original_image = vote_image.attr('src')
-    index = original_image.indexOf 'current'
-    image_src_a = original_image.split('/')
-    image_path = image_src_a[0..(image_src_a.length - 2)]
-    image_src = image_src_a[image_src_a.length - 1]
-    console.log image_src
+    index = vote_image.attr('src').indexOf('current')
+    vote_hidden = $('#vote_up_image').attr('value')
+    vote_current_hidden = $('#vote_up_current_image').attr('value')
 
     if index <= -1
-      toggle_image = image_src.replace '_up', '_up_current'
+      toggle_image = vote_current_hidden
     else
-      toggle_image = image_src.replace '_up_current', '_up'
+      toggle_image = vote_hidden
 
-    image_path.push(toggle_image)
-    toggle_image = image_path.join('/')
     vote_image.attr('src', toggle_image)
 
 
