@@ -1,4 +1,7 @@
 class Video < ActiveRecord::Base
+  # thumbs_up gem
+  acts_as_voteable
+
   belongs_to :user
 
   validates :video_url, :presence => true

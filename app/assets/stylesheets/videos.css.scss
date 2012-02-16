@@ -1,3 +1,36 @@
 // Place all the styles related to the videos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+table.videos {
+  tr.video {
+    td {
+      padding-left: 0;
+      height: 150px;
+
+      .title {
+        font-size: $font-size * 1.15;
+        font-weight: bold;
+
+        .who {
+          font-size: $font-size * .9;
+          font-weight: normal;
+          line-height: $font-size * 2;
+        }
+      }
+    }
+    td.votes {
+      width: 60px;
+      text-align: center;
+
+      .vote-count {
+        font-size: $font-size * 2;
+        height: 30px;
+        line-height: $font-size * 2;
+      }
+    }
+    td.thumb {
+      width: 120px;
+    }
+  }
+}

@@ -1,11 +1,25 @@
 %h2 Listing videos
 
-%table.videos
+%table.table.videos
   - @videos.each do |video|
-    %tr
-      %td.video-col= link_to image_tag("#{video.thumbnail_url}"), video_path(video)
-      %td= link_to video.name, video_path(video)
-      %td= video.desc
-      - if can?(:update, video)
-        %td.edit= link_to 'Edit', edit_video_path(video)
-        %td.delete= link_to 'Delete', video, :confirm => 'Are you sure?', :method => :delete
+    %tr.video
+      %td.votes
+        = link_to image_tag(asset_path("vote_up.png")), vote_up_video_path(video), { :method => :post, :remote => true, :class => 'votedan' }
+        .vote-count
+          = video.id
+      %td.thumb= link_to image_tag("#{video.thumbnail_url}"), video_path(video)
+      %td
+        .title
+          = link_to video.name, video_path(video)
+          .who
+            -if video.user
+              by
+              = link_to video.user.username, '#'
+            -else
+              n/a
+        = video.desc
+      %td.edit
+        - if can?(:update, video)
+          = link_to 'Edit', edit_video_path(video)
+        -else
+          &nbsp;

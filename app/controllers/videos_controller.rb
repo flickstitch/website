@@ -84,4 +84,37 @@ class VideosController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def vote_up
+    @video = Video.find(params[:id])
+
+    respond_to do |format|
+      format.json do
+        begin
+          current_user.clear_votes @video
+          current_user.vote_for(@video)
+          render :json => @video.id, :status => 200
+        rescue
+          render :nothing => true, :status => 400
+        end
+      end
+    end
+  end
+
+  def vote_down
+    @video = Video.find(params[:id])
+
+    respond_to do |format|
+      format.json do
+        begin
+          current_user.clear_votes @video
+          current_user.vote_against(@video)
+          render :json => @video.id, :status => 200
+        rescue
+          render :nothing => true, :status => 400
+        end
+      end
+    end
+  end
+
 end

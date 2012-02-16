@@ -1,5 +1,10 @@
 Collabio::Application.routes.draw do
-  resources :videos
+  resources :videos do
+    member do
+      post :vote_up
+      post :vote_down
+    end
+  end
 
   devise_for :users
 

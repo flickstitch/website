@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  # thumbs_up gem
+  acts_as_voter
+
   has_many :videos
 
   has_many :assignments
