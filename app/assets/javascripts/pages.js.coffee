@@ -7,6 +7,7 @@ jQuery ->
     toggle_vote_image($(this))
     update_vote_count($(this))
 
+
   # update href on vote link; doesn't matter if success or failure so use "complete" status
   $('.votes > a').bind 'ajax:complete', ->
     original_href = $(this).attr('href')
@@ -16,6 +17,7 @@ jQuery ->
       new_href = original_href.replace /_up/, '_down'
 
     $(this).attr('href', new_href)
+
 
   # toggle thumbs up image between grey and blue
   # the toggle happens immediately to make the site 
@@ -32,6 +34,7 @@ jQuery ->
 
     vote_image.attr('src', toggle_image)
 
+
   update_vote_count = (image_tag) ->
     vote_count_div = image_tag.closest('.votes').children('.vote-count')
     vote_count = parseInt(vote_count_div.text())
@@ -42,6 +45,7 @@ jQuery ->
       vote_count = vote_count + 1
 
     vote_count_div.html(vote_count)
+
 
   # show alert to users that try to vote while not logged in
   $('.cannot-vote').click ->
