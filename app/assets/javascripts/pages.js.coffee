@@ -26,12 +26,17 @@ jQuery ->
     toggle_image = ''
     original_image = vote_image.attr('src')
     index = original_image.indexOf 'current'
+    image_src_a = original_image.split('/')
+    image_path = image_src_a[0..(image_src_a.length - 2)]
+    image_src = image_src_a[image_src_a.length - 1]
 
     if index <= -1
-      toggle_image = original_image.replace /.png/, '_current.png'
+      toggle_image = image_src.replace /.png/, '_current.png'
     else
-      toggle_image = original_image.replace /_current.png/, '.png'
+      toggle_image = image_src.replace /_current.png/, '.png'
 
+    image_path.push(toggle_image)
+    toggle_image = image_path.join('/')
     vote_image.attr('src', toggle_image)
 
 
