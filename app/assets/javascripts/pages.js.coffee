@@ -32,9 +32,9 @@ jQuery ->
     console.log image_src
 
     if index <= -1
-      toggle_image = image_src.replace '.', '_current.'
+      toggle_image = image_src.replace '_up', '_up_current'
     else
-      toggle_image = image_src.replace '_current.', '.'
+      toggle_image = image_src.replace '_up_current', '_up'
 
     image_path.push(toggle_image)
     toggle_image = image_path.join('/')
