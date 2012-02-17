@@ -25,8 +25,8 @@ jQuery ->
   toggle_vote_image = (vote_image) ->
     toggle_image = ''
     index = vote_image.attr('src').indexOf('current')
-    vote_hidden = $('#vote_up_image').attr('value')
-    vote_current_hidden = $('#vote_up_current_image').attr('value')
+    vote_hidden = "<%= asset_path('vote_up.png') %>"
+    vote_current_hidden = "<%= asset_path('vote_up_current.png') %>"
 
     if index <= -1
       toggle_image = vote_current_hidden
