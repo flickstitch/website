@@ -20,8 +20,7 @@ jQuery ->
 
 
   # toggle thumbs up image between grey and blue
-  # the toggle happens immediately to make the site 
-  # seem fast and responsive
+  # the toggle happens immediately (even before database is updated)
   toggle_vote_image = (vote_image) ->
     toggle_image = ''
     index = vote_image.attr('src').indexOf('current')
