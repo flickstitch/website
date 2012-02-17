@@ -3,6 +3,18 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
+  vote_off_png = "<%= asset_path('vote_off.png') %>"
+  vote_on_png = "<%= asset_path('vote_on.png') %>"
+
+
+  # check to see if vote image is on or off (on = blue; off = grey)
+  vote_image_on = (vote_img) ->
+    if vote_img.attr('src').indexOf(vote_on_png) > -1
+      return true
+    else
+      return false
+
+
   $('.votes > a > img').click ->
     toggle_vote_image($(this))
     update_vote_count($(this))
@@ -11,38 +23,32 @@ jQuery ->
   # update href on vote link; doesn't matter if success or failure so use "complete" status
   $('.votes > a').bind 'ajax:complete', ->
     original_href = $(this).attr('href')
-    if original_href.indexOf('_up') <= -1
-      new_href = original_href.replace /_down/, '_up'
-    else
+    vote_img = $(this).find('img')
+    if vote_image_on(vote_img)
       new_href = original_href.replace /_up/, '_down'
-
+    else
+      new_href = original_href.replace /_down/, '_up'
     $(this).attr('href', new_href)
 
 
   # toggle thumbs up image between grey and blue
   # the toggle happens immediately (even before database is updated)
-  toggle_vote_image = (vote_image) ->
-    toggle_image = ''
-    index = vote_image.attr('src').indexOf('current')
-    vote_hidden = "<%= asset_path('vote_up.png') %>"
-    vote_current_hidden = "<%= asset_path('vote_up_current.png') %>"
-
-    if index <= -1
-      toggle_image = vote_current_hidden
+  toggle_vote_image = (vote_img) ->
+    if vote_image_on(vote_img)
+      toggle_image = vote_off_png
     else
-      toggle_image = vote_hidden
+      toggle_image = vote_on_png
+    vote_img.attr('src', toggle_image)
 
-    vote_image.attr('src', toggle_image)
 
-
-  update_vote_count = (image_tag) ->
-    vote_count_div = image_tag.closest('.votes').children('.vote-count')
+  update_vote_count = (vote_img) ->
+    vote_count_div = vote_img.closest('.votes').children('.vote-count')
     vote_count = parseInt(vote_count_div.text())
 
-    if image_tag.attr('src').indexOf('_current') <= -1
-      vote_count = vote_count - 1
-    else
+    if vote_image_on(vote_img)
       vote_count = vote_count + 1
+    else
+      vote_count = vote_count - 1
 
     vote_count_div.html(vote_count)
 
