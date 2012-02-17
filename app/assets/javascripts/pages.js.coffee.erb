@@ -44,12 +44,10 @@ jQuery ->
   update_vote_count = (vote_img) ->
     vote_count_div = vote_img.closest('.votes').children('.vote-count')
     vote_count = parseInt(vote_count_div.text())
-
     if vote_image_on(vote_img)
       vote_count = vote_count + 1
     else
       vote_count = vote_count - 1
-
     vote_count_div.html(vote_count)
 
 
