@@ -93,7 +93,7 @@ class VideosController < ApplicationController
         begin
           current_user.clear_votes @video
           current_user.vote_for(@video)
-          render :nothing => true, :status => 200
+          render :json => { :vote_on => true, :votes_for => @video.votes_for }, :status => 200
         rescue
           render :nothing => true, :status => 400
         end
@@ -109,7 +109,7 @@ class VideosController < ApplicationController
         begin
           current_user.clear_votes @video
           current_user.vote_against(@video)
-          render :nothing => true, :status => 200
+          render :json => { :vote_on => false, :votes_for => @video.votes_for }, :status => 200
         rescue
           render :nothing => true, :status => 400
         end

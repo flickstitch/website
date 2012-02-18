@@ -14,19 +14,23 @@ jQuery ->
     else
       return false
 
+  set_vote_image = (vote_img, onoff) ->
+    if onoff == "on"
+      vote_img.attr('src', vote_on_png)
+    else
+      vote_img.attr('src', vote_off_png)
 
-  # using jquery's "one" method to prevent multiple simultaneous clicks
-  setup_vote_click = ->
-    $('.votes > a').one "click", (e) ->
-      toggle_vote_image($(this).find('img'))
-      update_vote_count($(this).find('img'))
+  set_vote_count = (vote_count_div, vote_count) ->
+    vote_count_div.html(vote_count)
 
 
-  setup_vote_click()
+  $('.votes > a > img').click ->
+    toggle_vote_image($(this))
+    update_vote_count($(this))
 
 
   # update href on vote link; doesn't matter if success or failure so use "complete" status
-  $('.votes > a').bind 'ajax:complete', ->
+  $('.votes > a').bind 'ajax:complete', (e, data, textStatus, jqXHR) -> 
     original_href = $(this).attr('href')
     vote_img = $(this).find('img')
     if vote_image_on(vote_img)
@@ -34,7 +38,13 @@ jQuery ->
     else
       new_href = original_href.replace /_down/, '_up'
     $(this).attr('href', new_href)
-    setup_vote_click()
+    # sync score/vote image with what's on server now
+    voteJson = $.parseJSON(data.responseText)
+    if voteJson.vote_on
+      set_vote_image($(this).find('img'), "on")
+    else
+      set_vote_image($(this).find('img'), "off")
+    set_vote_count($(this).closest('.votes').children('.vote-count'), voteJson.votes_for)
 
 
   # toggle thumbs up image between grey and blue
