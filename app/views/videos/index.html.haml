@@ -9,19 +9,21 @@
           # been voted on by current_user
           vote_image = ''
           vote_link = ''
+          vote_on = false
 
           if current_user and current_user.voted_for? video
             vote_image = "vote_on.png"
             vote_link = vote_down_video_path(video)
+            vote_on = true
           else
             vote_image = "vote_off.png"
             vote_link = vote_up_video_path(video)
           end
 
         -if current_user
-          = link_to image_tag(asset_path(vote_image)), vote_link, { :method => :post, :remote => true }
+          .pointer= link_to image_tag(asset_path(vote_image)), vote_link, { :'data-vote-on' => vote_on, :remote => true, :'data-vote-id' => video.id }
         -else
-          .cannot-vote= image_tag asset_path(vote_image)
+          .cannot-vote.pointer= image_tag asset_path(vote_image)
 
         .vote-count
           = video.votes_for

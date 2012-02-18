@@ -1,8 +1,8 @@
 Collabio::Application.routes.draw do
   resources :videos do
     member do
-      post :vote_up
-      post :vote_down
+      get :vote_up
+      get :vote_down
     end
   end
 

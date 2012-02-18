@@ -8,6 +8,30 @@ jQuery ->
   vote_on_png = "<%= asset_path('vote_on.png') %>"
 
 
+  # prevents postback when click events are disabled
+  $('.votes a').removeAttr('href')
+
+
+  # manually construct href so we can add/remove it
+  # via jquery
+  setup_vote_click = -> 
+    $('.votes a').one "click", (e) ->
+      toggle_vote_image($(this).find('img'))
+      update_vote_count($(this).find('img'))
+
+      video_id = this.getAttribute('data-vote-id')
+      vote_on = this.getAttribute('data-vote-on')
+      link = "/videos/#{video_id}"
+      if vote_on == "true"
+        link = link + "/vote_down"
+      else
+        link = link + "/vote_up"
+      $(this).attr('href', link)
+
+
+  setup_vote_click()
+
+
   # check to see if vote image is on or off (on = blue; off = grey)
   vote_image_on = (vote_img) ->
     if vote_img.attr('src').indexOf(vote_on_png) > -1
@@ -25,21 +49,20 @@ jQuery ->
     vote_count_div.html(vote_count)
 
 
-  $('.votes > a').bind 'ajax:beforeSend', -> 
-    toggle_vote_image($(this).find('img'))
-    update_vote_count($(this).find('img'))
-    toggle_vote_href($(this))
+  $('.votes a').bind 'ajax:beforeSend', -> 
+    $(this).removeAttr('href')
 
 
   # update href on vote link; doesn't matter if success or failure so use "complete" status
-  $('.votes > a').bind 'ajax:complete', (e, data, textStatus, jqXHR) -> 
+  $('.votes a').bind 'ajax:complete', (e, data, textStatus, jqXHR) -> 
     # sync score/vote image with what's on server now
     voteJson = $.parseJSON(data.responseText)
     if voteJson.vote_on
-      set_vote_image($(this).find('img'), "on")
+      $(this).attr('data-vote-on', 'true')
     else
-      set_vote_image($(this).find('img'), "off")
-    set_vote_count($(this).closest('.votes').children('.vote-count'), voteJson.votes_for)
+      $(this).attr('data-vote-on', 'false')
+    # once complete turn events back on
+    setup_vote_click()
 
 
   # toggle thumbs up image between grey and blue
