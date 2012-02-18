@@ -15,9 +15,14 @@ jQuery ->
       return false
 
 
-  $('.votes > a > img').click ->
-    toggle_vote_image($(this))
-    update_vote_count($(this))
+  # using jquery's "one" method to prevent multiple simultaneous clicks
+  setup_vote_click = ->
+    $('.votes > a').one "click", (e) ->
+      toggle_vote_image($(this).find('img'))
+      update_vote_count($(this).find('img'))
+
+
+  setup_vote_click()
 
 
   # update href on vote link; doesn't matter if success or failure so use "complete" status
@@ -29,6 +34,7 @@ jQuery ->
     else
       new_href = original_href.replace /_down/, '_up'
     $(this).attr('href', new_href)
+    setup_vote_click()
 
 
   # toggle thumbs up image between grey and blue
