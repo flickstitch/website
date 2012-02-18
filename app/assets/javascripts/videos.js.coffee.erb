@@ -29,8 +29,7 @@ jQuery ->
     update_vote_count($(this))
 
 
-  # update href on vote link; doesn't matter if success or failure so use "complete" status
-  $('.votes > a').bind 'ajax:complete', (e, data, textStatus, jqXHR) -> 
+  $('.votes > a').bind 'ajax:beforeSend', -> 
     original_href = $(this).attr('href')
     vote_img = $(this).find('img')
     if vote_image_on(vote_img)
@@ -38,6 +37,10 @@ jQuery ->
     else
       new_href = original_href.replace /_down/, '_up'
     $(this).attr('href', new_href)
+
+
+  # update href on vote link; doesn't matter if success or failure so use "complete" status
+  $('.votes > a').bind 'ajax:complete', (e, data, textStatus, jqXHR) -> 
     # sync score/vote image with what's on server now
     voteJson = $.parseJSON(data.responseText)
     if voteJson.vote_on
