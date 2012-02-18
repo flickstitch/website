@@ -8,8 +8,8 @@ class VideosController < ApplicationController
     @videos = Video.all
 
     respond_to do |format|
+      format.json { render :nothing => true }
       format.html # index.html.erb
-      format.json { render json: @videos }
     end
   end
 
@@ -90,6 +90,7 @@ class VideosController < ApplicationController
 
     respond_to do |format|
       format.json do
+        sleep 2
         begin
           current_user.clear_votes @video
           current_user.vote_for(@video)
@@ -106,6 +107,7 @@ class VideosController < ApplicationController
 
     respond_to do |format|
       format.json do
+        sleep 2
         begin
           current_user.clear_votes @video
           current_user.vote_against(@video)
