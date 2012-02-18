@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
+  # video page globals
   vote_off_png = "<%= asset_path('vote_off.png') %>"
   vote_on_png = "<%= asset_path('vote_on.png') %>"
 
@@ -24,19 +25,10 @@ jQuery ->
     vote_count_div.html(vote_count)
 
 
-  $('.votes > a > img').click ->
-    toggle_vote_image($(this))
-    update_vote_count($(this))
-
-
   $('.votes > a').bind 'ajax:beforeSend', -> 
-    original_href = $(this).attr('href')
-    vote_img = $(this).find('img')
-    if vote_image_on(vote_img)
-      new_href = original_href.replace /_up/, '_down'
-    else
-      new_href = original_href.replace /_down/, '_up'
-    $(this).attr('href', new_href)
+    toggle_vote_image($(this).find('img'))
+    update_vote_count($(this).find('img'))
+    toggle_vote_href($(this))
 
 
   # update href on vote link; doesn't matter if success or failure so use "complete" status
@@ -58,6 +50,16 @@ jQuery ->
     else
       toggle_image = vote_on_png
     vote_img.attr('src', toggle_image)
+
+
+  toggle_vote_href = (href_tag) ->
+    original_href = href_tag.attr('href')
+    vote_img = href_tag.find('img')
+    if vote_image_on(vote_img)
+      new_href = original_href.replace /_up/, '_down'
+    else
+      new_href = original_href.replace /_down/, '_up'
+    href_tag.attr('href', new_href)
 
 
   update_vote_count = (vote_img) ->
