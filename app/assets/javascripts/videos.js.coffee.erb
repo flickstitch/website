@@ -54,8 +54,7 @@ jQuery ->
 
   toggle_vote_href = (href_tag) ->
     original_href = href_tag.attr('href')
-    vote_img = href_tag.find('img')
-    if vote_image_on(vote_img)
+    if original_href.indexOf('vote_up') > -1
       new_href = original_href.replace /_up/, '_down'
     else
       new_href = original_href.replace /_down/, '_up'
