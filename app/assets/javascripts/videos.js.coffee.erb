@@ -27,6 +27,7 @@ jQuery ->
       else
         link = link + "/vote_up"
       $(this).attr('href', link)
+      e.preventDefault()
 
 
   setup_vote_click()
