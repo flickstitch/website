@@ -1,4 +1,4 @@
-= form_for @video do |f|
+= simple_form_for(@video, :html => { :class => 'form-horizontal' }) do |f|
   -if @video.errors.any?
     -# remove user_id error message
     - @video.errors.delete(:user_id) if @video.errors.count > 1
@@ -22,21 +22,13 @@
     %br
     %br
 
-  = f.label "Video name"
-  = f.text_field :name
-  %br
-
-  = f.label :video_url
-  = f.text_field :video_url
-  %br
+  = f.input :name
+  = f.input :video_url, :hint => "must be from youtube.com or vimeo.com"
 
   -if current_user.has_role?(:admin) || current_user.has_role?(:manager)
     %p
-      = f.check_box :visible
-      = f.label :visible
+      = f.input :visible
 
-  = f.label :desc
-  = f.text_area :desc, :class => 'video-desc'
-  %br
-
-  %button.btn(type="submit") Save
+  = f.input :desc
+  .form-actions
+    = f.button :submit, :class => "btn-primary", :value => "Add Video"

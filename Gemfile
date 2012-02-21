@@ -9,6 +9,7 @@ gem 'newrelic_rpm'
 gem 'pry', :group => :development
 gem 'cancan'
 gem 'thumbs_up', '0.4.6'
+gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
 
 group :production do
   gem 'pg'
