@@ -17,6 +17,7 @@ class VideosController < ApplicationController
   # GET /videos/1.json
   def show
     @video = Video.find(params[:id])
+    @comments = @video.comment_threads
 
     respond_to do |format|
       format.html # show.html.erb
@@ -90,7 +91,6 @@ class VideosController < ApplicationController
 
     respond_to do |format|
       format.json do
-        sleep 2
         begin
           current_user.clear_votes @video
           current_user.vote_for(@video)
@@ -107,7 +107,6 @@ class VideosController < ApplicationController
 
     respond_to do |format|
       format.json do
-        sleep 2
         begin
           current_user.clear_votes @video
           current_user.vote_against(@video)
