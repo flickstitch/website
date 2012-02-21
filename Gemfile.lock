@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/elight/acts_as_commentable_with_threading.git
+  revision: 084e206ca0c4fa19c9b872ba4fcf26be5941f70f
+  specs:
+    acts_as_commentable_with_threading (1.1.1)
+      activerecord (>= 3.0)
+      activesupport (~> 3.0)
+      awesome_nested_set (>= 2.0)
+
+GIT
   remote: git://github.com/plataformatec/simple_form.git
   revision: b9a568d149e4f225242cded1ee937f3de3f5667a
   specs:
@@ -38,6 +47,8 @@ GEM
       multi_json (~> 1.0)
     addressable (2.2.6)
     arel (3.0.0)
+    awesome_nested_set (2.1.2)
+      activerecord (>= 3.0.0)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
     cancan (1.6.7)
@@ -196,6 +207,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_commentable_with_threading!
   cancan
   capybara
   coffee-rails (~> 3.2.1)

@@ -3,6 +3,7 @@ Collabio::Application.routes.draw do
     member do
       get :vote_up
       get :vote_down
+      post :add_comment
     end
   end
 

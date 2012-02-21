@@ -22,3 +22,25 @@
   = link_to 'Edit', edit_video_path(@video)
   \|
 = link_to 'Back', videos_path
+
+%p
+  -if current_user
+    #comment_form= form_tag add_comment_video_path, :remote => true
+    = text_area_tag "comment"
+    = button_tag "add comment", :class => "btn", :id => "comment_submit"
+  -else
+    = link_to "Sign in", new_user_session_path
+    to comment
+
+- if @comments
+  %p
+    %strong Comments
+  #comments
+    - @comments.each do |c|
+      %div{ :id => ["comment", c.id] }
+        = c.user.username
+        \-
+        = time_ago_in_words c.created_at
+        ago -
+        = c.body
+      %hr

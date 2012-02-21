@@ -98,3 +98,11 @@ jQuery ->
   # show alert to users that try to vote while not logged in
   $('.cannot-vote').click ->
     alert('You must sign in or register to vote!')
+
+
+  # show comments as they are added
+  $('#comment_form').bind 'ajax:complete', (e, data, textStatus, jqHXR) ->
+    # clear the comment box
+    $('#comment').val('')
+    commentJson = $.parseJSON(data.responseText)
+    $("<div id='comment_#{commentJson.id}'>" + commentJson.text + '</div><hr />').hide().prependTo('#comments').fadeIn()

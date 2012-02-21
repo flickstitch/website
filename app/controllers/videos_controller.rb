@@ -17,7 +17,7 @@ class VideosController < ApplicationController
   # GET /videos/1.json
   def show
     @video = Video.find(params[:id])
-    @comments = @video.comment_threads
+    @comments = @video.comment_threads.order("created_at DESC")
 
     respond_to do |format|
       format.html # show.html.erb
@@ -113,6 +113,22 @@ class VideosController < ApplicationController
           render :json => { :vote_on => false, :votes_for => @video.votes_for }, :status => 200
         rescue
           render :nothing => true, :status => 400
+        end
+      end
+    end
+  end
+
+  def add_comment
+    video = Video.find(params[:id])
+    text = params[:comment]
+    comment = Comment.build_from(video, current_user.id, text)
+
+    respond_to do |format|
+      format.json do
+        if comment.save!
+          render :json => { :text => text, :id => comment.id }, :status => 200
+        else
+          render :json => "there was a problem", :status => 400
         end
       end
     end
