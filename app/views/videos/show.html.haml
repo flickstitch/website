@@ -37,7 +37,7 @@
     %strong Comments
   #comments
     - @comments.each do |c|
-      %div{ :id => ["comment", c.id] }
+      .comment{ :id => ["comment", c.id] }
         = c.user.username
         \-
         = time_ago_in_words c.created_at
