@@ -126,7 +126,8 @@ class VideosController < ApplicationController
     respond_to do |format|
       format.json do
         if comment.save!
-          render :json => { :text => text, :id => comment.id }, :status => 200
+          comment_partial = render_to_string(:template => 'comments/_comment.html.haml', :locals => { :comment => comment})
+          render :json => { :text => comment_partial }, :status => 200
         else
           render :json => "there was a problem", :status => 400
         end

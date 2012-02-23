@@ -40,11 +40,4 @@
   %p
     %strong Comments
   #comments
-    - @comments.each do |c|
-      .comment{ :id => ["comment", c.id] }
-        = c.user.username
-        \-
-        = time_ago_in_words c.created_at
-        ago -
-        = c.body
-      %hr
+    = render :partial => @comments, :spacer_template => "comments/comment_separator"
