@@ -9,13 +9,13 @@ jQuery ->
 
 
   # prevents postback when click events are disabled
-  $('.votes a').removeAttr('href')
+  $('.votes a:first').removeAttr('href')
 
 
   # manually construct href so we can add/remove it
   # via jquery
   setup_vote_click = -> 
-    $('.votes a').one "click", (e) ->
+    $('.votes a:first').one "click", (e) ->
       toggle_vote_image($(this).find('img'))
       update_vote_count($(this).find('img'))
 
@@ -50,12 +50,12 @@ jQuery ->
     vote_count_div.html(vote_count)
 
 
-  $('.votes a').bind 'ajax:beforeSend', -> 
+  $('.votes a:first').bind 'ajax:beforeSend', -> 
     $(this).removeAttr('href')
 
 
   # update href on vote link; doesn't matter if success or failure so use "complete" status
-  $('.votes a').bind 'ajax:complete', (e, data, textStatus, jqXHR) -> 
+  $('.votes a:first').bind 'ajax:complete', (e, data, textStatus, jqXHR) -> 
     # sync score/vote image with what's on server now
     voteJson = $.parseJSON(data.responseText)
     if voteJson.vote_on

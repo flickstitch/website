@@ -2,9 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$video-width: 560px;
+
 table.videos {
-  tr.video {
-    td {
+  tr {
+    td.votes-col {
       padding-left: 0;
       height: 150px;
 
@@ -19,24 +21,44 @@ table.videos {
         }
       }
     }
-    td.votes {
+    td.votes-col {
       width: 60px;
       text-align: center;
-
-      .vote-count {
-        font-size: $font-size * 2;
-        height: 30px;
-        line-height: $font-size * 2;
-      }
     }
-    td.thumb {
+    td.thumb-col {
       width: 120px;
     }
   }
 }
 
+// voting buttons and score
+.votes {
+  float: left;
+
+  img {
+    cursor: pointer
+  }
+}
+
+.vote-count {
+  font-size: $font-size * 2;
+  padding-left: 5px;
+}
+
+#video-menu {
+  width: $video-width;
+}
+
+#video-show-sign-in {
+  clear: both;
+}
+
+#comment_form {
+  clear: both;
+}
+
 #comments {
-  width: 560px;
+  width: $video-width;
 
   .comment {
   }

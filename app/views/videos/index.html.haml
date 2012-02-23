@@ -2,32 +2,10 @@
 
 %table.table.videos
   - @videos.each do |video|
-    %tr.video
-      %td.votes
-        :ruby
-          # show appropriate image based on whether or not video has
-          # been voted on by current_user
-          vote_image = ''
-          vote_link = ''
-          vote_on = false
-
-          if current_user and current_user.voted_for? video
-            vote_image = "vote_on.png"
-            vote_link = vote_down_video_path(video)
-            vote_on = true
-          else
-            vote_image = "vote_off.png"
-            vote_link = vote_up_video_path(video)
-          end
-
-        -if current_user
-          .pointer= link_to image_tag(asset_path(vote_image)), vote_link, { :'data-vote-on' => vote_on, :remote => true, :'data-vote-id' => video.id }
-        -else
-          .cannot-vote.pointer= image_tag asset_path(vote_image)
-
-        .vote-count
-          = video.votes_for
-      %td.thumb= link_to image_tag("#{video.thumbnail_url}"), video_path(video)
+    %tr
+      %td.votes-col
+        = render :partial => 'vote_on', :locals => { :video => video }
+      %td.thumb-col= link_to image_tag("#{video.thumbnail_url}"), video_path(video)
       %td
         .title
           = link_to video.name, video_path(video)

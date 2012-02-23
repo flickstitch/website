@@ -18,10 +18,13 @@
 %p
   <iframe width="560" height="315" src="http://www.youtube.com/embed/#{@video.video_id}" frameborder="0" allowfullscreen></iframe>
 
-- if can?(:update, @video)
-  = link_to 'Edit', edit_video_path(@video)
-  \|
-= link_to 'Back', videos_path
+#video-menu
+  = render :partial => 'vote_on', :locals => { :video => @video }
+  .controls(style="float:right;vertical-align:top")
+    - if can?(:update, @video)
+      = link_to 'Edit', edit_video_path(@video)
+      \|
+    = link_to 'Back', videos_path
 
 %p
   -if current_user
@@ -29,8 +32,9 @@
     = text_area_tag "comment"
     = button_tag "add comment", :class => "btn", :id => "comment_submit"
   -else
-    = link_to "Sign in", new_user_session_path
-    to comment
+    #video-show-sign-in
+      = link_to "Sign in", new_user_session_path
+      to comment
 
 - if @comments
   %p
