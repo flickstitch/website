@@ -3,6 +3,37 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $video-width: 560px;
+$info-box-padding: 8px;
+
+#video_details {
+  padding: $info-box-padding;
+  width: $video-width - (2 * $info-box-padding);
+  background-color: #eee;
+
+  h2 {
+    line-height: 1;
+  }
+
+  .subline {
+    clear: both;
+  }
+
+  .ago {
+    float: right;
+  }
+
+  .video_name {
+    font-size: $font-size * 2;
+  }
+
+  .by {
+    float: left;
+
+    light, small {
+      color: #999;
+    }
+  }
+}
 
 table.videos {
   tr {

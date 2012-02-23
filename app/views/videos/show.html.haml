@@ -1,20 +1,21 @@
-%p
-  %b Name:
-  = @video.name
-%p
-  %b Submitted by:
-  - if @video.user
-    = @video.user.username
-  - else
-    n/a
-%p
-  %b Video url:
-  = @video.video_url
-%p
-  %b Description:
-  = @video.desc
-%p
-  <iframe width="560" height="315" src="http://www.youtube.com/embed/#{@video.video_id}" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/#{@video.video_id}" frameborder="0" allowfullscreen></iframe>
+#video_details
+  %h3
+    = @video.name
+  .subline
+    .by
+      %light
+        by
+      - if @video.user
+        = link_to @video.user.username, '#'
+      - else
+        n/a
+      %small
+        = time_ago_in_words @video.created_at
+        ago
+
+  %br
+  .desc= @video.desc
 
 #video-menu
   = render :partial => 'vote_on', :locals => { :video => @video }
