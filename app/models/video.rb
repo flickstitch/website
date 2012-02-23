@@ -8,6 +8,7 @@ class Video < ActiveRecord::Base
 
   validates :video_url, :presence => true
   validates :user_id, :presence => true
+  validates_length_of :name, :minimum => 2, :maximum => 80, :allow_blank => true
   validate :from_accepted_site
 
   before_save :set_video_id, :set_thumbnail_url
