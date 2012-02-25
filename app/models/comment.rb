@@ -3,6 +3,22 @@ class Comment < ActiveRecord::Base
   
   validates_presence_of :body
   validates_presence_of :user
+  validate :comment_after
+
+  def comment_after
+    user = User.find(self.user_id)
+    # helper find_comments_by_user uses "first" to get the most recent comment
+    last_comment = Comment.find_comments_by_user(user).first
+    now_i = DateTime.now.getutc.to_i
+
+    if last_comment
+      time_from_last_comment = now_i - last_comment.created_at.to_i
+      if time_from_last_comment < 30
+        wait =  30 - time_from_last_comment
+        errors[:base] << "You must wait #{wait} seconds before commenting again."
+      end
+    end
+  end
   
   # NOTE: install the acts_as_votable plugin if you 
   # want user to vote on the quality of comments.

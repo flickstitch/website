@@ -105,4 +105,7 @@ jQuery ->
     # clear the comment box
     $('#comment').val('')
     commentJson = $.parseJSON(data.responseText)
-    $("<div id='comment_#{commentJson.id}'>" + commentJson.text + '</div><hr />').hide().prependTo('#comments').fadeIn()
+    if textStatus == "success"
+      $("<div id='comment_#{commentJson.id}'>" + commentJson.text + '</div><hr />').hide().prependTo('#comments').fadeIn()
+    else
+      $("<div class='comment_error'>" + commentJson.text + '</div><hr />').hide().prependTo('#comments').fadeIn()
