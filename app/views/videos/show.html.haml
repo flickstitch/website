@@ -7,7 +7,7 @@
       %light
         by
       - if @video.user
-        = link_to @video.user.username, '#'
+        = simple_user_link @video.user
       - else
         n/a
       %small

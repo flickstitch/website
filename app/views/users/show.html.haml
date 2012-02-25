@@ -1,0 +1,20 @@
+%p
+  %h2
+    Name: 
+    = @user.username
+
+%p
+  Videos:
+  %br
+  
+  - if @user.videos
+    - @user.videos.each do |v|
+      = v.name
+      %br
+
+%p
+  Comments Posted:
+  = Comment.find_comments_by_user(@user).count
+
+%p
+  = link_to "back", :back
