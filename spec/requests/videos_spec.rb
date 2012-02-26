@@ -1,11 +1,28 @@
 require 'spec_helper'
 
 describe "Videos" do
-  describe "GET /videos" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get videos_path
-      response.status.should be(200)
+  it 'lets user post a comment' do
+    user = Factory.create(:user)
+    video = Factory.create(:video)
+    comment_text = "leaving a comment"
+
+    # sign user in
+    visit new_user_session_path
+    within(".new_user") do
+      fill_in "user_email", :with => user.email
+      fill_in "user_password", :with => user.password
+      click_button "Sign In"
+    end
+
+    visit video_path video
+
+    within("#comment_form") do
+      fill_in "comment", :with => comment_text
+      click_button "comment_submit"
+    end
+
+    within("#comments") do
+      page.should have_content(comment_text)
     end
   end
 end
