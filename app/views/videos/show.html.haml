@@ -27,9 +27,10 @@
 
 %p
   -if current_user
-    #comment_form= form_tag add_comment_video_path, :remote => true
-    = text_area_tag "comment"
-    = button_tag "add comment", :class => "btn", :id => "comment_submit"
+    #comment_form
+      = form_tag add_comment_video_path, :remote => true do
+        = text_area_tag "comment"
+        = button_tag "add comment", :class => "btn", :id => "comment_submit"
   -else
     #video-show-sign-in
       = link_to "Sign in", new_user_session_path
