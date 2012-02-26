@@ -8,7 +8,7 @@ class Ability
       cannot [:new, :edit], Video
     else
       # regular user
-      can [:vote_up, :vote_down, :create, :read], Video
+      can [:vote_up, :vote_down, :create, :read, :add_comment], Video
       can :manage, Video do |v|
         v.user == user
       end
