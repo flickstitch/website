@@ -11,7 +11,6 @@ gem 'cancan'
 gem 'thumbs_up', '0.4.6'
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
 gem 'acts_as_commentable_with_threading', :git => 'git://github.com/elight/acts_as_commentable_with_threading.git'
-gem 'thin', :group => :development
 
 group :production do
   gem 'pg'
@@ -28,6 +27,7 @@ end
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'thin'
 end
 
 group :test do
