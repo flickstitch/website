@@ -1,0 +1,51 @@
+.row
+  .span2
+    = link_to "previous projects", videos_path, { class:'btn' }
+  .span8
+    #project-title
+      current project: 
+      .title
+        Dragonball I
+      %br
+  .span2
+    .pull-right
+      = link_to "upcoming projects", '#', { class:'btn' }
+
+#scene-menu
+  // 120x90
+  - video = Video.first
+  %table
+    %tr
+      %td
+        .scene1
+          = link_to image_tag("#{video.thumbnail_url}"), video_path(video)
+          %br
+          = link_to "scene 1", '#'
+      %td
+        .scene2
+          = link_to image_tag("#{video.thumbnail_url}"), video_path(video)
+          %br
+          = link_to "scene 2", '#'
+      %td
+        .scene3
+          .vote
+            %br
+            %br
+            vote
+          = link_to "scene 3", '#'
+      %td
+        .scene4
+          .submit
+            %br
+            %br
+            submit
+          = link_to "scene 4", '#'
+      %td
+        .scene5
+          .nothing
+            %br
+            %br
+            ?
+          = link_to "scene 5", '#'
+
+%hr
