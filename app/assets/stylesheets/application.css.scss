@@ -5,20 +5,8 @@
 @import "videos";
 
 body {
-  .home_video {
-    text-align: center;
-  }
-
   .navbar-inner {
     border-radius: 0;
-  }
-
-  .home_btn {
-    text-align: center;
-    a {
-      width: 220px;
-      font-size: $font-size;
-    }
   }
 }
 
