@@ -28,9 +28,6 @@
             %span.i-bar
           %a.brand{:href => root_path}Irolo Street
           .container.nav-collapse
-            %ul.nav
-              %li= link_to "About", about_path
-              %li= link_to "Contact", contact_path
             %ul.nav.pull-right
               %li= link_to "Add Video", new_video_path
               %li= link_to "View Videos", videos_path
@@ -44,9 +41,13 @@
       = yield
     
       %footer
-        %p
+        %p.pull-right
+          = link_to "About", about_path
+          &middot;
+          = link_to "Contact", contact_path
+          &middot;
           = link_to "Terms of Use", terms_path
-          &nbsp; &middot; &nbsp; 
+          &middot;
           = link_to "Privacy Policy", privacy_path
           &copy; Irolo Street 2012
     /
