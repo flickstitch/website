@@ -36,9 +36,11 @@
         %div.alert.fade.in{ :class => "alert-#{twitterized_type(type)}" }
           %a.close(data-dismiss="alert") x
           = message
-      = yield
+      .yield-content
+        = yield
     
       %footer
+        %br
         %p.pull-right
           = link_to "About", about_path
           &nbsp;&nbsp;
