@@ -26,34 +26,29 @@ body {
 #scene-menu {
   text-align: center;
 
-  table { 
-    cell-padding: 0;
-    cell-spacing: 0;
-    margin: auto;
-    td { 
-      vertical-align: top;
+  .active {
+    text-decoration: underline;
+  }
+
+  .box {
+    width: 120px;
+    height: 90px;
+    display: inline-block;
+
+    .vote {
+    }
+
+    .submit {
+    }
+
+    .nothing {
     }
   }
+}
 
-  .vote {
-    vertical-align: middle;
-    width: 120px;
-    height: 90px;
-    background-color: #ccc;
-  }
-
-  .submit {
-    width: 120px;
-    height: 90px;
-    background-color: #ccc;
-  }
-
-  .nothing {
-    width: 120px;
-    height: 90px;
-    background-color: #ccc;
-  }
-
+#project-synopsis {
+  width: 600px;
+  margin: auto;
 }
 
 form {

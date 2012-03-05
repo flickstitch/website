@@ -12,42 +12,35 @@
       = link_to "upcoming projects", '#', { class:'btn' }
 
 #scene-menu
-  // 120x90
   - video = Video.first
-  %table
-    %tr
-      %td
-        .scene1
-          = link_to image_tag("#{video.thumbnail_url}"), video_path(video)
-          %br
-          = link_to "scene 1", '#'
-      %td
-        .scene2
-          = link_to image_tag("#{video.thumbnail_url}"), video_path(video)
-          %br
-          = link_to "scene 2", '#'
-      %td
-        .scene3
-          .vote
-            %br
-            %br
-            vote
-          = link_to "scene 3", '#'
-      %td
-        .scene4
-          .submit
-            %br
-            %br
-            submit
-          = link_to "scene 4", '#'
-      %td
-        .scene5
-          .nothing
-            %br
-            %br
-            ?
-          = link_to "scene 5", '#'
+  .box
+    = link_to image_tag("#{video.thumbnail_url}"), video_path(video)
+    %br
+    = link_to "scene 1", '#'
+  .box
+    = link_to image_tag("#{video.thumbnail_url}"), video_path(video)
+    %br
+    = link_to "scene 2", '#'
+  .box
+    .vote
+      = link_to image_tag(asset_path('video-vote.png')), videos_path
+    = link_to "scene 3", videos_path
+  .box
+    .submit
+      = link_to image_tag(asset_path('video-submit.png')), new_video_path
+    = link_to "scene 4", new_video_path
+  .box
+    .nothing
+      = link_to image_tag(asset_path('video-none.png')), '#'
+      = link_to "scene 5", '#'
 
+%br
+%br
+#project-synopsis
+  %strong
+    synopsis: 
+  This project is about the pure awesomeness of ninjas. If you think they're here to
+  save the day...you're wrong! They're here to END IT!
 %br
 
 %table.table.videos
