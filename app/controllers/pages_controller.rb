@@ -16,6 +16,10 @@ class PagesController < ApplicationController
   def terms
   end
 
+  def landing
+    render :layout => 'landing'
+  end
+
   # temporary actions that need to be removed
   def mockscene1
   end
