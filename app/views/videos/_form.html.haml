@@ -26,7 +26,7 @@
   = f.input :video_url, :hint => "must be from youtube.com or vimeo.com"
 
   -if current_user.has_role?(:admin) || current_user.has_role?(:manager)
-    %p
+    .admin
       = f.input :visible
 
   = f.input :desc
