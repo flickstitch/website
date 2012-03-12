@@ -11,10 +11,13 @@ Collabio::Application.routes.draw do
 
   resources :users
 
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  root :to => 'pages#home'
+  authenticated :user do
+    root :to => 'pages#home'
+  end
 
+  root :to => 'pages#landing'
+
+  match 'home' => 'pages#home'
   match "about" => 'pages#about'
   match "contact" => 'pages#contact'
   match "terms" => 'pages#terms'
