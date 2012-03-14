@@ -5,9 +5,11 @@ class Video < ActiveRecord::Base
   acts_as_commentable
 
   belongs_to :user
+  belongs_to :scene
 
   validates :video_url, :presence => true
   validates :user_id, :presence => true
+  validates :scene_id, :presence => true
   validates_length_of :name, :minimum => 2, :maximum => 80, :allow_blank => true
   validate :from_accepted_site
 

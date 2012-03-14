@@ -1,0 +1,16 @@
+%p
+  %b Name:
+  = @scene.name
+%p
+  %b Desc:
+  = @scene.desc
+%p
+  %b Start date:
+  = @scene.start_date
+%p
+  %b End date:
+  = @scene.end_date
+
+= link_to 'Edit', edit_scene_path(@scene)
+\|
+= link_to 'Back', scenes_path

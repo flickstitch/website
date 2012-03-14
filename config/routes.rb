@@ -1,4 +1,8 @@
 Collabio::Application.routes.draw do
+  resources :scenes
+
+  resources :projects
+
   resources :videos do
     member do
       get :vote_up
@@ -17,7 +21,7 @@ Collabio::Application.routes.draw do
 
   root :to => 'pages#landing'
 
-  match 'home' => 'pages#home'
+  match 'home' => 'projects#latest'
   match "about" => 'pages#about'
   match "contact" => 'pages#contact'
   match "terms" => 'pages#terms'

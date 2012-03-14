@@ -1,0 +1,54 @@
+-# prev_next project menu
+.row
+  .span2
+    = link_to "previous projects", projects_path, { class:'btn' }
+  .span8
+    #project-title
+      current project: 
+      .title
+        = @project.name
+      %br
+  .span2
+    .pull-right
+      = link_to "upcoming projects", '#', { class:'btn' }
+
+-#show only for admin or manager
+-if current_user.has_role?(:admin) || current_user.has_role?(:manager)
+  .admin
+    = link_to 'Edit Project', edit_project_path(@project)
+
+#scene-menu
+  - current_date = DateTime.now
+  - @scenes.each do |scene|
+    .box
+      -if scene.is_closed_time?(current_date)
+        = link_to image_tag(asset_path('video-vote.png')), videos_path
+        = scene.name
+      -elsif scene.is_vote_time?(current_date)
+        = scene.name
+      -elsif scene.is_submit_time?(current_date)
+        = scene.name
+      -elsif scene.is_unavailable_time?(current_date)
+        = scene.name
+
+  -#.box
+    -#= link_to image_tag("#{video.thumbnail_url}"), video_path(video)
+    -#%br
+    -#= link_to "scene 1", '#'
+  -#.box
+    -#= link_to image_tag("#{video.thumbnail_url}"), video_path(video)
+    -#%br
+    -#= link_to "scene 2", '#'
+  -#.box
+    -#.vote
+      -#= link_to image_tag(asset_path('video-vote.png')), videos_path
+    -#= link_to "scene 3", videos_path
+  -#.box
+    -#.submit
+      -#= link_to image_tag(asset_path('video-submit.png')), new_video_path
+    -#= link_to "scene 4", new_video_path
+  -#.box
+    -#.nothing
+      -#= link_to image_tag(asset_path('video-none.png')), '#'
+      -#= link_to "scene 5", '#'
+
