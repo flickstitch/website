@@ -17,59 +17,19 @@
   .admin
     = link_to 'Edit Project', edit_project_path(@project)
 
-- current_date = DateTime.now + 2.days
-current date: 
-= current_date.strftime("%m/%d/%Y")
+- current_date = DateTime.now + 5.days
 #scene-menu
   - @scenes.each do |scene|
     .box
       -if scene.is_vote_time?(current_date)
         = link_to image_tag(asset_path('video-vote.png')), new_video_path
         = scene.name
-        %br
-        = scene.start_date
-        %br
-        = scene.end_date
       -elsif scene.is_submit_time?(current_date)
         = link_to image_tag(asset_path('video-submit.png')), videos_path
         = scene.name
-        %br
-        = scene.start_date
-        %br
-        = scene.end_date
       -elsif scene.is_unavailable_time?(current_date)
-        unavailable
+        = link_to image_tag(asset_path('video-none.png')), videos_path
         = scene.name
-        %br
-        = scene.start_date
-        %br
-        = scene.end_date
       -elsif scene.is_closed_time?(current_date)
+        -#= link_to image_tag("#{scene.videos.first.thumbnail_url}"), video_path(video)
         = scene.name
-        closed
-        %br
-        = scene.start_date
-        %br
-        = scene.end_date
-
-  -#.box
-    -#= link_to image_tag("#{video.thumbnail_url}"), video_path(video)
-    -#%br
-    -#= link_to "scene 1", '#'
-  -#.box
-    -#= link_to image_tag("#{video.thumbnail_url}"), video_path(video)
-    -#%br
-    -#= link_to "scene 2", '#'
-  -#.box
-    -#.vote
-      -#= link_to image_tag(asset_path('video-vote.png')), videos_path
-    -#= link_to "scene 3", videos_path
-  -#.box
-    -#.submit
-      -#= link_to image_tag(asset_path('video-submit.png')), new_video_path
-    -#= link_to "scene 4", new_video_path
-  -#.box
-    -#.nothing
-      -#= link_to image_tag(asset_path('video-none.png')), '#'
-      -#= link_to "scene 5", '#'
-
