@@ -12,24 +12,32 @@
     .pull-right
       = link_to "upcoming projects", '#', { class:'btn' }
 
--#show only for admin or manager
+-# show only for admin or manager
 -if current_user.has_role?(:admin) || current_user.has_role?(:manager)
   .admin
     = link_to 'Edit Project', edit_project_path(@project)
 
+-# scene menu
 - current_date = DateTime.now + 5.days
 #scene-menu
   - @scenes.each do |scene|
     .box
       -if scene.is_vote_time?(current_date)
-        = link_to image_tag(asset_path('video-vote.png')), new_video_path
-        = scene.name
+        = link_to image_tag(asset_path('video-vote.png')), scene_path(scene)
+        = link_to scene.name, scene_path(scene)
       -elsif scene.is_submit_time?(current_date)
         = link_to image_tag(asset_path('video-submit.png')), videos_path
-        = scene.name
+        = link_to scene.name, '#'
       -elsif scene.is_unavailable_time?(current_date)
-        = link_to image_tag(asset_path('video-none.png')), videos_path
-        = scene.name
+        = link_to image_tag(asset_path('video-none.png')), scene_path(scene)
+        = link_to scene.name, scene_path(scene)
       -elsif scene.is_closed_time?(current_date)
         -#= link_to image_tag("#{scene.videos.first.thumbnail_url}"), video_path(video)
-        = scene.name
+        = link_to scene.name, scene_path(scene)
+
+%br
+#project-synopsis
+  %strong
+    project synopsis: 
+  = @project.desc
+%br
