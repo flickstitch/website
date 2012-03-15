@@ -29,6 +29,7 @@ class VideosController < ApplicationController
   # GET /videos/new.json
   def new
     @video = Video.new
+    @scene = Scene.find(params[:scene_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,6 +46,9 @@ class VideosController < ApplicationController
   # POST /videos.json
   def create
     @video = Video.new(params[:video])
+    @scene = Scene.find(params[:video][:scene_id])
+
+    @video.scene = @scene
     @video.user = current_user
 
     respond_to do |format|

@@ -1,4 +1,11 @@
-%h2 New video
+%h2 
+  New video
+  %small 
+    for project:
+    = @scene.project.name
+    ,
+    scene:
+    = @scene.name
 
 = render 'form'
 
