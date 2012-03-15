@@ -6,7 +6,7 @@
     #project-title
       current project: 
       .title
-        = @project.name
+        = link_to @project.name, project_path(@project)
       %br
   .span2
     .pull-right
