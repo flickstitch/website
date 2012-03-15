@@ -83,6 +83,6 @@ class ProjectsController < ApplicationController
   end
 
   def latest
-    redirect_to project_path(Project.latest)
+    redirect_to project_path(Project.latest), :flash => flash
   end
 end

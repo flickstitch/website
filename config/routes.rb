@@ -16,12 +16,11 @@ Collabio::Application.routes.draw do
   resources :users
 
   authenticated :user do
-    root :to => 'pages#home'
+    root :to => 'projects#latest'
   end
 
   root :to => 'pages#landing'
 
-  match 'home' => 'projects#latest'
   match "about" => 'pages#about'
   match "contact" => 'pages#contact'
   match "terms" => 'pages#terms'
