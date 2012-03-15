@@ -2,9 +2,10 @@
 
 FactoryGirl.define do
   factory :scene do
-    name "MyString"
-    desc "MyText"
+    name "scene name"
+    desc "scene desc"
     start_date "2012-03-14"
-    end_date "2012-03-14"
+    end_date "2012-03-18"
+    project
   end
 end

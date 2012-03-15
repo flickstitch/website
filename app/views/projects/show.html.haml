@@ -17,19 +17,40 @@
   .admin
     = link_to 'Edit Project', edit_project_path(@project)
 
+- current_date = DateTime.now + 2.days
+current date: 
+= current_date.strftime("%m/%d/%Y")
 #scene-menu
-  - current_date = DateTime.now
   - @scenes.each do |scene|
     .box
-      -if scene.is_closed_time?(current_date)
-        = link_to image_tag(asset_path('video-vote.png')), videos_path
+      -if scene.is_vote_time?(current_date)
+        = link_to image_tag(asset_path('video-vote.png')), new_video_path
         = scene.name
-      -elsif scene.is_vote_time?(current_date)
-        = scene.name
+        %br
+        = scene.start_date
+        %br
+        = scene.end_date
       -elsif scene.is_submit_time?(current_date)
+        = link_to image_tag(asset_path('video-submit.png')), videos_path
         = scene.name
+        %br
+        = scene.start_date
+        %br
+        = scene.end_date
       -elsif scene.is_unavailable_time?(current_date)
+        unavailable
         = scene.name
+        %br
+        = scene.start_date
+        %br
+        = scene.end_date
+      -elsif scene.is_closed_time?(current_date)
+        = scene.name
+        closed
+        %br
+        = scene.start_date
+        %br
+        = scene.end_date
 
   -#.box
     -#= link_to image_tag("#{video.thumbnail_url}"), video_path(video)
