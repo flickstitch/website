@@ -1,1 +1,19 @@
-= render :partial => '/shared/project_scene_menu', :locals => { scenes:@scenes, project:@project }
+= render :partial => '/shared/project_scene_menu', :locals => { project:@project }
+
+-# basically a horizontal version of project_scene menu
+- current_date = DateTime.now
+
+- @project.scenes.each do |scene|
+  .box
+    -if scene.is_vote_time?(current_date)
+      = link_to image_tag(asset_path('video-vote.png')), scene_path(scene)
+      = link_to scene.name, scene_path(scene)
+    -elsif scene.is_submit_time?(current_date)
+      = link_to image_tag(asset_path('video-submit.png')), new_video_path(:scene_id => scene)
+      = link_to scene.name, new_video_path(:scene_id => scene)
+    -elsif scene.is_unavailable_time?(current_date)
+      = link_to image_tag(asset_path('video-none.png')), scene_path(scene)
+      = link_to scene.name, scene_path(scene)
+    -elsif scene.is_closed_time?(current_date)
+      = link_to image_tag("#{scene.videos.first.thumbnail_url}"), video_path(scene.videos.first)
+      = link_to scene.name, scene_path(scene)
