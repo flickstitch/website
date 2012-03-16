@@ -21,7 +21,7 @@
 -# scene menu
 - current_date = DateTime.now
 #scene-menu
-  - scenes.each do |scene|
+  - project.scenes.each do |scene|
     .box
       -if scene.is_vote_time?(current_date)
         = link_to image_tag(asset_path('video-vote.png')), scene_path(scene)
@@ -40,5 +40,5 @@
 #project-synopsis
   %strong
     project synopsis: 
-  = scenes.first.project.desc
+  = project.desc
 %br
