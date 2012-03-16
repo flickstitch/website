@@ -50,9 +50,12 @@ body {
   }
 }
 
-#project-synopsis {
+#project-synopsis, #scene-synopsis {
   width: 600px;
   margin: auto;
+}
+#scene-title {
+  text-align: center;
 }
 
 form {

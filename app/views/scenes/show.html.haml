@@ -1,21 +1,31 @@
-%h2 
-  Videos
-  %small
-    project:
-    = @scene.project.name
-    ,
-    scene:
-    = @scene.name
+= render :partial => '/shared/project_scene_menu', :locals => { project:@scene.project }
 
-%p
-  %b Desc:
+%h3#scene-title
+  = @scene.name
+  -current_time = DateTime.now
+  -if @scene.is_closed_time?(current_time)
+    %small
+      (voting closed)
+  -elsif @scene.is_unavailable_time?(current_time)
+    %small
+      (not yet available)
+%br
+#scene-synopsis
+  %strong scene synposis:
   = @scene.desc
-%p
-  %b Start date:
-  = @scene.start_date
-%p
-  %b End date:
-  = @scene.end_date
+
+  %p
+    %b Start date:
+    = @scene.start_date
+  %p
+    %b End date:
+    = @scene.end_date
+
+-# show only for admin or manager
+-if user_signed_in?
+  -if current_user.has_role?(:admin) || current_user.has_role?(:manager)
+    .admin
+      = link_to 'Edit Scene', edit_scene_path(@scene)
 
 %table.table.videos
   - @scene.videos.each do |video|
@@ -38,5 +48,3 @@
           &nbsp;
       %td.votes-col
         = render :partial => '/videos/vote_on', :locals => { :video => video }
-
-= link_to 'Edit', edit_scene_path(@scene)

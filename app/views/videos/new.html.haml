@@ -1,3 +1,5 @@
+= render :partial => '/shared/project_scene_menu', :locals => { project:@scene.project }
+
 %h2 
   New video
   %small 
@@ -6,6 +8,15 @@
     ,
     scene:
     = @scene.name
+%p
+  %b Desc:
+  = @scene.desc
+%p
+  %b Start date:
+  = @scene.start_date
+%p
+  %b End date:
+  = @scene.end_date
 
 = render 'form'
 
