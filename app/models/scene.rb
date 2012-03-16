@@ -1,6 +1,7 @@
 class Scene < ActiveRecord::Base
   belongs_to :project
   has_many :videos
+  validates :project_id, :presence => true
 
   def is_vote_time?(current_date)
     adjusted_current_date = current_date - self.days_in_scene.days
