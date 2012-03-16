@@ -13,12 +13,13 @@
       = link_to "upcoming projects", '#', { class:'btn' }
 
 -# show only for admin or manager
--if current_user.has_role?(:admin) || current_user.has_role?(:manager)
-  .admin
-    = link_to 'Edit Project', edit_project_path(@project)
+-if user_signed_in?
+  -if current_user.has_role?(:admin) || current_user.has_role?(:manager)
+    .admin
+      = link_to 'Edit Project', edit_project_path(@project)
 
 -# scene menu
-- current_date = DateTime.now + 5.days
+- current_date = DateTime.now
 #scene-menu
   - @scenes.each do |scene|
     .box
