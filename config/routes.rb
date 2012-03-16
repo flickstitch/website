@@ -21,6 +21,7 @@ Collabio::Application.routes.draw do
 
   root :to => 'pages#landing'
 
+  match "home" => 'projects#latest'
   match "about" => 'pages#about'
   match "contact" => 'pages#contact'
   match "terms" => 'pages#terms'
