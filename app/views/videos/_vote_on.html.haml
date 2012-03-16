@@ -14,11 +14,10 @@
     vote_link = vote_up_video_path(video)
   end
 
--if current_user
+-if current_user && video.scene.is_vote_time?(DateTime.now)
   .votes
     = link_to image_tag(asset_path(vote_image)), vote_link, { :'data-vote-on' => vote_on, :remote => true, :'data-vote-id' => video.id, :align => 'left' }
     %span.vote-count= video.votes_for
 -else
   .cannot-vote.votes
-    = image_tag asset_path(vote_image)
     %span.vote-count= video.votes_for
