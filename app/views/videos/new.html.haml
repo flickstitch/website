@@ -8,6 +8,9 @@
     ,
     scene:
     = @scene.name
+-if user_signed_in?
+  %p
+    = link_to "my submitted videos", user_path(current_user)
 %p
   %b Desc:
   = @scene.desc
