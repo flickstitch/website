@@ -66,5 +66,7 @@ form {
 }
 
 .admin {
-  background-color: #FFA8A8;
+  a, label, input {
+    background-color: yellow;
+  }
 }
