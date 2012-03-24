@@ -2,11 +2,11 @@
   = f.error_notification
 
   .form-inputs
+    = f.association :project, :selected => Project.last.id
     = f.input :name
     = f.input :desc
     = f.input :start_date
     = f.input :end_date
-    = f.association :project
 
   .form-actions
     = f.button :submit
