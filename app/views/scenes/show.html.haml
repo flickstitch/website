@@ -3,12 +3,17 @@
 %h3#scene-title
   = @scene.name
   -current_time = DateTime.now
-  -if @scene.is_closed_time?(current_time)
-    %small
+  %small
+    -if @scene.is_closed_time?(current_time)
       (voting closed)
-  -elsif @scene.is_unavailable_time?(current_time)
-    %small
+    -elsif @scene.is_unavailable_time?(current_time)
       (not yet available)
+    -# show only for admin or manager
+    -if user_signed_in?
+      -if current_user.has_role?(:admin) || current_user.has_role?(:manager)
+        .admin
+          = link_to "Edit Scene: #{@scene.name}", edit_scene_path(@scene)
+
 %br
 #scene-synopsis
   %strong scene synposis:
@@ -20,12 +25,6 @@
   %p
     %b End date:
     = @scene.end_date
-
--# show only for admin or manager
--if user_signed_in?
-  -if current_user.has_role?(:admin) || current_user.has_role?(:manager)
-    .admin
-      = link_to 'Edit Scene', edit_scene_path(@scene)
 
 %table.table.videos
   - @scene.videos.each do |video|
