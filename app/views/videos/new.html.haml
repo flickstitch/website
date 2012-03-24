@@ -8,11 +8,9 @@
     ,
     scene:
     = @scene.name
+
 -# show only for admin or manager
--if user_signed_in?
-  -if current_user.has_role?(:admin) || current_user.has_role?(:manager)
-    .admin
-      = link_to "Edit Scene: #{@scene.name}", edit_scene_path(@scene)
+= render :partial => "/shared/if_admin_or_manager", :locals => { link_text:"Edit Scene: #{@scene.name}", link_path:edit_scene_path(@scene) }
 
 -if user_signed_in?
   %p
