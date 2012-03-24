@@ -40,6 +40,7 @@ class VideosController < ApplicationController
   # GET /videos/1/edit
   def edit
     @video = Video.find(params[:id])
+    @scene = Scene.find(@video.scene_id)
   end
 
   # POST /videos
