@@ -8,7 +8,8 @@
   = f.label :username, "Username (cannot be changed)"
   #registration_username
     = current_user.username
-  %br
+  %p
+    = link_to "my videos", user_path(current_user)
 
   = f.label :email
   = f.email_field :email
