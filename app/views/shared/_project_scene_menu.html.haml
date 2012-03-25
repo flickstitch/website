@@ -30,7 +30,10 @@
         = link_to image_tag(asset_path('video-none.png')), scene_path(scene)
         = link_to scene.name, scene_path(scene)
       -elsif scene.is_closed_time?(current_date)
-        = link_to image_tag("#{scene.videos.first.thumbnail_url}"), scene_path(scene)
+        -if scene.videos.blank?
+          = link_to image_tag(asset_path("video-none-submitted.png")), scene_path(scene)
+        -else
+          = link_to image_tag("#{scene.videos.first.thumbnail_url}"), scene_path(scene)
         = link_to scene.name, scene_path(scene)
 
 %br

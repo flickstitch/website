@@ -23,24 +23,27 @@
     %b End date:
     = @scene.end_date
 
-%table.table.videos
-  - @scene.videos.each do |video|
-    %tr
-      %td.thumb-col= link_to image_tag("#{video.thumbnail_url}"), video_path(video)
-      %td
-        .title
-          = link_to video.name, video_path(video)
-          .who
-            -if video.user
-              by
-              = simple_user_link video.user
-            -else
-              n/a
-        = video.desc
-      %td.edit
-        - if can?(:update, video)
-          = link_to 'Edit', edit_video_path(video)
-        -else
-          &nbsp;
-      %td.votes-col
-        = render :partial => '/videos/vote_on', :locals => { :video => video }
+-if @scene.videos.present?
+  %table.table.videos
+    - @scene.videos.each do |video|
+      %tr
+        %td.thumb-col= link_to image_tag("#{video.thumbnail_url}"), video_path(video)
+        %td
+          .title
+            = link_to video.name, video_path(video)
+            .who
+              -if video.user
+                by
+                = simple_user_link video.user
+              -else
+                n/a
+          = video.desc
+        %td.edit
+          - if can?(:update, video)
+            = link_to 'Edit', edit_video_path(video)
+          -else
+            &nbsp;
+        %td.votes-col
+          = render :partial => '/videos/vote_on', :locals => { :video => video }
+-else
+  no videos submitted
