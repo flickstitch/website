@@ -18,7 +18,7 @@
 -# scene menu
 - current_date = DateTime.now
 #scene-menu
-  - project.scenes.each do |scene|
+  - project.scenes.order('start_date asc').each do |scene|
     .box
       -if scene.is_vote_time?(current_date)
         = link_to image_tag(asset_path('video-vote.png')), scene_path(scene)
