@@ -1,5 +1,6 @@
 - current_date = DateTime.now
-#scene-menu
+- align_left = params[:action] == "index" && params[:controller] == "projects"
+#scene-menu{ :style => align_left ? style="text-align:left" : '' }
   - project.scenes.order('start_date asc').each do |scene|
     .box
       -if scene.is_vote_time?(current_date)
