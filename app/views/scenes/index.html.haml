@@ -1,7 +1,11 @@
-%h1 Listing scenes
+%h1 
+  Listing scenes
+  %small
+    = render :partial => "/shared/if_admin_or_manager", :locals => { link_text:"New Scene", link_path:new_scene_path }
 
-%table
+%table.table.table-striped
   %tr
+    %th Project
     %th Name
     %th Desc
     %th Start date
@@ -12,6 +16,7 @@
 
   - @scenes.each do |scene|
     %tr
+      %td= scene.project.name
       %td= scene.name
       %td= scene.desc
       %td= scene.start_date
@@ -21,5 +26,3 @@
       %td= link_to 'Destroy', scene, :confirm => 'Are you sure?', :method => :delete
 
 %br
-
-= link_to 'New Scene', new_scene_path

@@ -1,12 +1,19 @@
 class ScenesController < ApplicationController
+  # cancan
+  load_and_authorize_resource
+
   # GET /scenes
   # GET /scenes.json
   def index
-    @scenes = Scene.all
+    if user_signed_in? && (current_user.has_role?(:admin) || current_user.has_role?(:manager))
+      @scenes = Scene.order('project_id desc').order('start_date asc')
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @scenes }
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @scenes }
+      end
+    else
+      raise CanCan::AccessDenied.new("Not authorized!")
     end
   end
 
