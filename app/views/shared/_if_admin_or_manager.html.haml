@@ -1,5 +1,5 @@
 -# show only for admin or manager
 -if user_signed_in?
   -if current_user.has_role?(:admin) || current_user.has_role?(:manager)
-    .admin
+    %span.admin
       = link_to link_text, link_path
