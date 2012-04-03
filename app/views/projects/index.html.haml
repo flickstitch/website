@@ -7,7 +7,7 @@
 
 - @projects.each do |project|
   %strong
-    project synopsis: 
+    = "#{project.name}:"
   = project.desc
 
   &nbsp;
