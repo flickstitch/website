@@ -5,11 +5,15 @@ class VideosController < ApplicationController
   # GET /videos
   # GET /videos.json
   def index
-    @videos = Video.all
+    if user_signed_in? && (current_user.has_role?(:admin) || current_user.has_role?(:manager))
+      @videos = Video.all
 
-    respond_to do |format|
-      format.json { render :nothing => true }
-      format.html # index.html.erb
+      respond_to do |format|
+        format.json { render :nothing => true }
+        format.html # index.html.erb
+      end
+    else
+      raise CanCan::AccessDenied.new("Not authorized!")
     end
   end
 
