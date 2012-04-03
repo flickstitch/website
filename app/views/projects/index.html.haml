@@ -1,21 +1,41 @@
-%h1 Listing projects
-
-%table
-  %tr
-    %th Name
-    %th Desc
-    %th
-    %th
-    %th
-
-  - @projects.each do |project|
-    %tr
-      %td= project.name
-      %td= project.desc
-      %td= link_to 'Show', project
-      %td= link_to 'Edit', edit_project_path(project)
-      %td= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete
+%h1 
+  Listing projects
+  %small
+    = render :partial => "/shared/if_admin_or_manager", :locals => { link_text:"New Project", link_path:new_project_path }
 
 %br
 
-= link_to 'New Project', new_project_path
+- @projects.each do |project|
+  %strong
+    project synopsis: 
+  = project.desc
+
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  -# show only for admin or manager
+  = render :partial => "/shared/if_admin_or_manager", :locals => { link_text:"Edit Project: #{project.name}", link_path:edit_project_path(project) }
+
+  %br
+
+  - current_date = DateTime.now
+  #scene-menu(style="text-align:left")
+    - project.scenes.each do |scene|
+      .box
+        -if scene.is_vote_time?(current_date)
+          = link_to image_tag(asset_path('video-vote.png')), scene_path(scene)
+          = link_to scene.name, scene_path(scene)
+        -elsif scene.is_submit_time?(current_date)
+          = link_to image_tag(asset_path('video-submit.png')), new_video_path(:scene_id => scene)
+          = link_to scene.name, new_video_path(:scene_id => scene)
+        -elsif scene.is_unavailable_time?(current_date)
+          = link_to image_tag(asset_path('video-none.png')), scene_path(scene)
+          = link_to scene.name, scene_path(scene)
+        -elsif scene.is_closed_time?(current_date)
+          -if scene.videos.blank?
+            = link_to image_tag(asset_path("video-none-submitted.png")), scene_path(scene)
+          -else
+            = link_to image_tag("#{scene.videos.first.thumbnail_url}"), scene_path(scene)
+          = link_to scene.name, scene_path(scene)
+
+  %br
