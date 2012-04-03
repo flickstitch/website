@@ -9,7 +9,7 @@
   
   - if @user.videos
     - @user.videos.each do |v|
-      = v.name
+      = link_to v.name, v
       %br
 
 %p
