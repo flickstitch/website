@@ -6,12 +6,18 @@ class Ability
     if user.nil?
       can :read, Video
       cannot [:new, :edit], Video
+
+      can :read, Scene
+      cannot [:new, :edit], Scene
     else
       # regular user
       can [:vote_up, :vote_down, :create, :read, :add_comment], Video
       can :manage, Video do |v|
         v.user == user
       end
+
+      can :read, Scene
+      cannot [:new, :edit], Scene
 
       case
         when user.has_role?(:admin)
