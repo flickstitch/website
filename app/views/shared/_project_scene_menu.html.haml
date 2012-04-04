@@ -22,7 +22,7 @@
 
   .span2
     .pull-right
-      = link_to "upcoming projects", '#', { class:'btn' }
+      = link_to "upcoming projects", '#', { class:'btn', disabled:true }
 
 -# scene menu
 = render :partial => 'shared/project_scenes', :locals => { project:project }
