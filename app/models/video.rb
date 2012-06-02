@@ -17,6 +17,16 @@ class Video < ActiveRecord::Base
 
   default_scope where(:visible => true).order('id desc')
 
+  def upvote_by_user(current_user)
+    current_user.clear_votes self
+    current_user.vote_for(self)
+  end
+
+  def downvote_by_user(current_user)
+    current_user.clear_votes self
+    current_user.vote_against(self)
+  end
+
   private
 
   # videos must be from youtube.com or vimeo.com

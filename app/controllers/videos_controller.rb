@@ -101,8 +101,7 @@ class VideosController < ApplicationController
     respond_to do |format|
       format.json do
         begin
-          current_user.clear_votes @video
-          current_user.vote_for(@video)
+          @video.upvote_by_user(current_user)
           render :json => { :vote_on => true, :votes_for => @video.votes_for }, :status => 200
         rescue
           render :nothing => true, :status => 400
@@ -117,8 +116,7 @@ class VideosController < ApplicationController
     respond_to do |format|
       format.json do
         begin
-          current_user.clear_votes @video
-          current_user.vote_against(@video)
+          @video.downvote_by_user(current_user)
           render :json => { :vote_on => false, :votes_for => @video.votes_for }, :status => 200
         rescue
           render :nothing => true, :status => 400
