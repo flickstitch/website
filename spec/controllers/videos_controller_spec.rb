@@ -41,11 +41,23 @@ describe VideosController do
     end
   end
 
-    it "returns json info about vote" do
-      get :vote_down, :id => video.id, :format => :json
-      json_response = JSON.parse(response.body)
-      json_response['vote_on'].should == false
-      json_response['votes_for'].should == 0
+  context "user not logged in" do
+    describe ".vote_up" do
+      it "not allowed" do
+        expect do
+          get :vote_up, :id => video.id, :format => :json
+        end.to change{ Vote.count }.by 0
+        response.success?.should == false
+      end
+    end
+
+    describe ".vote_down" do
+      it "not allowed" do
+        expect do
+          get :vote_down, :id => video.id, :format => :json
+        end.to change{ Vote.count }.by 0
+        response.success?.should == false
+      end
     end
   end
 
