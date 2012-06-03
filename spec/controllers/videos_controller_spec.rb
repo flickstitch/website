@@ -28,8 +28,12 @@ describe VideosController do
 
     describe ".vote_down" do
       it "vote should be false" do
-        get :vote_down, :id => video.id, :format => :json
-        Vote.first.vote.should == false
+        # create a vote before downvoting
+        subject.current_user.vote_for(video)
+
+        expect do
+          get :vote_down, :id => video.id, :format => :json
+        end.to change{ Vote.count }.by -1
       end
 
       it "returns json info about vote" do

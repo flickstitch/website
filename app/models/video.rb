@@ -24,7 +24,6 @@ class Video < ActiveRecord::Base
 
   def downvote_by_user(current_user)
     current_user.clear_votes self
-    current_user.vote_against(self)
   end
 
   private
