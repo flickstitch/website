@@ -5,7 +5,12 @@ describe VideosController do
   let(:video) { Factory.create(:video) }
 
   before(:each) do
+    User.destroy_all
     Video.stub(:find).and_return(video)
+  end
+
+  after(:each) do
+    User.destroy_all
   end
 
   context "logged in user" do
@@ -22,11 +27,6 @@ describe VideosController do
         expect do
           get :vote_up, :id => video.id, :format => :json
         end.to change { video.score }.by 1
-      end
-
-      it "saves score to database" do
-        get :vote_up, :id => video.id, :format => :json
-        Video.first.score.should == video.score
       end
 
       it "returns json info about vote" do
@@ -52,11 +52,6 @@ describe VideosController do
         expect do
           get :vote_down, :id => video.id, :format => :json
         end.to change { video.score }.by -1
-      end
-
-      it "saves score to database" do
-        get :vote_down, :id => video.id, :format => :json
-        Video.first.score.should == video.score
       end
 
       it "returns json info about vote" do

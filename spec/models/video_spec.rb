@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe Video do
+  before(:each) do
+    User.destroy_all
+  end
+
+  after(:each) do
+    User.destroy_all
+  end
 
 # TODO cases to take care of in the future
 #invalid http://vimeo.com/3170953
@@ -77,6 +84,28 @@ describe Video do
       it 'gets valid video_id created' do
         vid = Factory.create(:video, video_url:"http://vimeo.com/groups/01fx/videos/28546884")
         vid.video_id.should == "28546884"
+      end
+    end
+  end
+
+  context "logged in user" do
+    describe ".upvote_by_user(user)" do
+      it "saves score to database" do
+        user = Factory.build(:user)
+        video = Factory.create(:video)
+        video.upvote_by_user(user)
+
+        Video.find(video.id).score.should == video.score
+      end
+    end
+
+    describe ".downvote_by_user(user)" do
+      it "saves score to database" do
+        user = Factory.build(:user)
+        video = Factory.create(:video)
+        video.downvote_by_user(user)
+
+        Video.find(video.id).score.should == video.score
       end
     end
   end
