@@ -24,6 +24,11 @@ describe VideosController do
         end.to change { video.score }.by 1
       end
 
+      it "saves score to database" do
+        get :vote_up, :id => video.id, :format => :json
+        Video.first.score.should == video.score
+      end
+
       it "returns json info about vote" do
         get :vote_up, :id => video.id, :format => :json
         json_response = JSON.parse(response.body)
@@ -47,6 +52,11 @@ describe VideosController do
         expect do
           get :vote_down, :id => video.id, :format => :json
         end.to change { video.score }.by -1
+      end
+
+      it "saves score to database" do
+        get :vote_down, :id => video.id, :format => :json
+        Video.first.score.should == video.score
       end
 
       it "returns json info about vote" do

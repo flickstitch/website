@@ -32,10 +32,12 @@ class Video < ActiveRecord::Base
   
   def upscore
     self.score = self.score + 1
+    save!
   end
 
   def downscore
     self.score = self.score - 1
+    save!
   end
 
   # videos must be from youtube.com or vimeo.com
