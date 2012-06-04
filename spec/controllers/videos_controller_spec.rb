@@ -18,12 +18,19 @@ describe VideosController do
         end.to change{ Vote.count }.by 1
       end
 
+      it "increment video score by 1" do
+        expect do
+          get :vote_up, :id => video.id, :format => :json
+        end.to change { video.score }.by 1
+      end
+
       it "returns json info about vote" do
         get :vote_up, :id => video.id, :format => :json
         json_response = JSON.parse(response.body)
         json_response['vote_on'].should == true
         json_response['votes_for'].should == 1
       end
+
     end
 
     describe ".vote_down" do
@@ -34,6 +41,12 @@ describe VideosController do
         expect do
           get :vote_down, :id => video.id, :format => :json
         end.to change{ Vote.count }.by -1
+      end
+
+      it "lowers video score by 1" do
+        expect do
+          get :vote_down, :id => video.id, :format => :json
+        end.to change { video.score }.by -1
       end
 
       it "returns json info about vote" do

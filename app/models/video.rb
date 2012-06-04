@@ -20,13 +20,23 @@ class Video < ActiveRecord::Base
   def upvote_by_user(current_user)
     current_user.clear_votes self
     current_user.vote_for(self)
+    upscore
   end
 
   def downvote_by_user(current_user)
     current_user.clear_votes self
+    downscore
   end
 
   private
+  
+  def upscore
+    self.score = self.score + 1
+  end
+
+  def downscore
+    self.score = self.score - 1
+  end
 
   # videos must be from youtube.com or vimeo.com
   def from_accepted_site
