@@ -24,4 +24,9 @@ class Scene < ActiveRecord::Base
     (self.end_date - self.start_date).to_i + 1
   end
 
+  # order by score
+  def videos_by_score
+    # videos is an array at this point, use array sorting
+    self.videos.sort_by{ |v| v.score }.reverse
+  end
 end

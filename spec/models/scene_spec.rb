@@ -19,7 +19,7 @@ describe Scene do
     end
 
     after(:all) do
-      [Scene, Project].each do |a|
+      [Scene, Project, User, Video].each do |a|
         a.destroy_all
       end
     end
@@ -125,6 +125,20 @@ describe Scene do
         @scene4.is_unavailable_time?(@edge_today).should == true
         @scene5.is_unavailable_time?(@edge_today).should == true
       end
+    end
+  end
+
+  describe ".videos_by_score" do
+    it 'returns list of videos ordered by score' do
+      user = Factory.create(:user)
+      scene = Factory.create(:scene)
+      vid1 = Factory.create(:video, :scene_id => scene.id, :user_id => user.id)
+      vid2 = Factory.create(:video, :scene_id => scene.id, :user_id => user.id)
+      vid1.upvote_by_user(user)
+
+      scene.videos_by_score.count.should == 2
+      scene.videos_by_score[0].should == vid1
+      scene.videos_by_score[1].should == vid2
     end
   end
 
