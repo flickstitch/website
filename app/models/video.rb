@@ -31,12 +31,12 @@ class Video < ActiveRecord::Base
   private
   
   def upscore
-    self.score = self.score + 1
+    self.score += 1
     save!
   end
 
   def downscore
-    self.score = self.score - 1
+    self.score -= 1
     save!
   end
 
