@@ -1,0 +1,4 @@
+-if @video.video_url.include?("vimeo.com")
+  <iframe src="http://player.vimeo.com/video/#{@video.video_id}" width="560" height="315" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+-else
+  <iframe width="560" height="315" src="http://www.youtube.com/embed/#{@video.video_id}" frameborder="0" allowfullscreen></iframe>
