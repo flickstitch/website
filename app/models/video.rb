@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Video < ActiveRecord::Base
   # thumbs_up gem
   acts_as_voteable
@@ -90,10 +92,18 @@ class Video < ActiveRecord::Base
     if uri.host.include?('youtube.com') || uri.host.include?('youtu.be')
       self.thumbnail_url = "http://img.youtube.com/vi/#{self.video_id}/2.jpg"
     elsif uri.host.include?('vimeo.com')
-      self.thumbnail_url = "http:vimeo"
+      self.thumbnail_url = get_vimeo_thumbnail_url(video_id)
     else
       raise "unable to parse thumbnail url for: #{self.video_url}"
     end
+  end
+
+  def get_vimeo_thumbnail_url(video_id)
+    # API call
+    vimeo_video_json_url = "http://vimeo.com/api/v2/video/%s.json" % video_id
+    # Parse the JSON and extract the thumbnail_large url
+    thumbnail_image_location = JSON.parse(open(vimeo_video_json_url).read).first['thumbnail_large'] rescue nil
+    thumbnail_image_location
   end
 
 end

@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Video do
+  let(:vimeo_thumbnail_url) { "http://b.vimeocdn.com/ts/302/062/302062320_640.jpg" }
   before(:each) do
     [User, Video].each { |item| item.destroy_all }
   end
@@ -62,23 +63,53 @@ describe Video do
     end
   end
 
+  describe "validate vimeo.com links" do
+    context 'valid video_id' do
+      it 'gets valid video_id created' do
+        vid = Factory.build(:video, video_url:"http://www.vimeo.com/31709533")
+        vid.stub(:get_vimeo_thumbnail_url).and_return(vimeo_thumbnail_url)
+        vid.save!
+        vid.video_id.should == "31709533"
+      end
+    end
+
+    context 'valid video_id in a group url' do
+      it 'gets valid video_id created' do
+        vid = Factory.build(:video, video_url:"http://vimeo.com/groups/01fx/videos/28546884")
+        vid.stub(:get_vimeo_thumbnail_url).and_return(vimeo_thumbnail_url)
+        vid.save!
+        vid.video_id.should == "28546884"
+      end
+    end
+  end
+
   describe ".new" do
     context "from vimeo.com" do
       context "url is http://player.vimeo.com/video/43119058" do
+        let(:video) { Factory.build(:video, video_url:"http://player.vimeo.com/video/43119058") }
+
+        before(:each) do
+          video.stub(:get_vimeo_thumbnail_url).and_return(vimeo_thumbnail_url)
+        end
+
         it "acceptable url" do
-          vimeo_link = "http://player.vimeo.com/video/43119058"
-          vid = Factory.build(:video, video_url:vimeo_link)
           expect do
-            vid.save!
+            video.save!
           end.to_not raise_error
         end
 
         it "creates valid video record" do
-          vimeo_link = "http://player.vimeo.com/video/43119058"
-          vid = Factory.build(:video, video_url:vimeo_link)
-          vid.save!
+          video.save!
+          video.video_id.should == "43119058"
+        end
 
-          vid.video_id.should == "43119058"
+        it "creates thumbnail link", r:true do
+          # thumbnail only created when saved
+          video.save!
+
+          expect do
+            thumb = URI.parse(video.thumbnail_url)
+          end.to_not raise_error
         end
       end
     end
@@ -91,22 +122,6 @@ describe Video do
       expect {
         vid.save!
       }.to raise_error
-    end
-  end
-
-  describe "validate vimeo.com link" do
-    context 'valid video_id' do
-      it 'gets valid video_id created' do
-        vid = Factory.create(:video, video_url:"http://www.vimeo.com/31709533")
-        vid.video_id.should == "31709533"
-      end
-    end
-
-    context 'valid video_id in a group url' do
-      it 'gets valid video_id created' do
-        vid = Factory.create(:video, video_url:"http://vimeo.com/groups/01fx/videos/28546884")
-        vid.video_id.should == "28546884"
-      end
     end
   end
 
