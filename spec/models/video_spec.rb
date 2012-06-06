@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe Video do
   before(:each) do
-    User.destroy_all
+    [User, Video].each { |item| item.destroy_all }
   end
 
   after(:each) do
-    User.destroy_all
+    [User, Video].each { |item| item.destroy_all }
   end
 
 # TODO cases to take care of in the future
@@ -58,6 +58,28 @@ describe Video do
         expect {
           vid.save!
         }.to raise_error
+      end
+    end
+  end
+
+  describe ".new" do
+    context "from vimeo.com" do
+      context "url is http://player.vimeo.com/video/43119058" do
+        it "acceptable url" do
+          vimeo_link = "http://player.vimeo.com/video/43119058"
+          vid = Factory.build(:video, video_url:vimeo_link)
+          expect do
+            vid.save!
+          end.to_not raise_error
+        end
+
+        it "creates valid video record" do
+          vimeo_link = "http://player.vimeo.com/video/43119058"
+          vid = Factory.build(:video, video_url:vimeo_link)
+          vid.save!
+
+          vid.video_id.should == "43119058"
+        end
       end
     end
   end

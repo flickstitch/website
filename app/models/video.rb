@@ -44,7 +44,7 @@ class Video < ActiveRecord::Base
   def from_accepted_site
     uri = URI.parse(self.video_url)
 
-    if uri.host.nil? || (%w[youtube.com youtu.be vimeo.com].include?(uri.host.sub('www.', '')) == false)
+    if uri.host.nil? || (%w[youtube.com youtu.be vimeo.com player.vimeo.com].include?(uri.host.sub('www.', '')) == false)
       errors.add(:video_url, "must be from youtube.com or vimeo.com")
     end
   end
