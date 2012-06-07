@@ -6,7 +6,11 @@
       %h2= "#{pluralize(@video.errors.count, "error")} prohibited this video from being saved:"
       %ul
         - @video.errors.full_messages.each do |msg|
-          %li= msg
+          -# handle special case
+          - if msg.downcase.strip == "video url"
+            %li= "#{msg} must be from youtube.com or vimeo.com"
+          - else
+            %li= msg
 
   -if params[:action] == 'edit'
     <iframe width="560" height="315" src="http://www.youtube.com/embed/#{@video.video_id}" frameborder="0" allowfullscreen></iframe>

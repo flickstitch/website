@@ -9,7 +9,7 @@ class Video < ActiveRecord::Base
   belongs_to :user
   belongs_to :scene
 
-  validates :video_url, :presence => true
+  validates :video_url, :presence => true, :allow_blank => true
   validates :user_id, :presence => true
   validates :scene_id, :presence => true
   validates_length_of :name, :minimum => 2, :maximum => 80, :allow_blank => true
@@ -47,7 +47,12 @@ class Video < ActiveRecord::Base
     uri = URI.parse(self.video_url)
 
     if uri.host.nil? || (%w[youtube.com youtu.be vimeo.com player.vimeo.com].include?(uri.host.sub('www.', '')) == false)
-      errors.add(:video_url, "must be from youtube.com or vimeo.com")
+      if errors.count > 0
+        error_message = "must be from youtube.com or vimeo.com"
+      else
+        error_message = ''
+      end
+      errors.add(:video_url, error_message)
     end
   end
 
