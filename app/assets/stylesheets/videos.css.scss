@@ -107,3 +107,7 @@ table.videos {
   }
 }
 
+//hide hint when error messages present
+.error .help-block {
+  display: none;
+}
