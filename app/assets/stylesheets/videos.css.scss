@@ -99,12 +99,10 @@ table.videos {
   }
 }
 
-#new_video {
-  // video
-  textarea#video_desc {
-    width: 300px;
-    height:170px;
-  }
+// video form
+textarea#video_desc {
+  width: 300px;
+  height:170px;
 }
 
 //hide hint when error messages present
