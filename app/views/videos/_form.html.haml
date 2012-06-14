@@ -22,8 +22,10 @@
     %br
     %br
 
-  = f.input :name
+  = f.input :name, :label => "Video Name"
   = f.input :video_url, :hint => "must be from youtube.com or vimeo.com"
+  = f.input :director
+  = f.input :actors
 
   -if current_user.has_role?(:admin) || current_user.has_role?(:manager)
     .admin

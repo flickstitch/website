@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120403060836) do
+ActiveRecord::Schema.define(:version => 20120614091524) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -91,6 +91,8 @@ ActiveRecord::Schema.define(:version => 20120403060836) do
     t.boolean  "visible",       :default => true
     t.integer  "scene_id"
     t.integer  "score",         :default => 0
+    t.string   "director"
+    t.text     "actors"
   end
 
   create_table "votes", :force => true do |t|
