@@ -99,6 +99,9 @@ jQuery ->
   $('.cannot-vote').click ->
     alert('You must sign in or register to vote!')
 
+  # .vote-count should not be clickable
+  $('.vote-count').click ->
+    return false
 
   # show comments as they are added
   $('#comment_form').bind 'ajax:complete', (e, data, textStatus, jqHXR) ->
