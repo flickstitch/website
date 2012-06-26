@@ -3,7 +3,9 @@ Collabio::Application.routes.draw do
     resources :scenes
   end
 
-  resources :projects
+  resources :scenes do
+    resources :videos
+  end
 
   resources :videos do
     member do

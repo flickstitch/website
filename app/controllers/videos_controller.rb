@@ -5,8 +5,8 @@ class VideosController < ApplicationController
   # GET /videos
   # GET /videos.json
   def index
-    if user_signed_in? && (current_user.has_role?(:admin) || current_user.has_role?(:manager))
-      @videos = Video.all
+    if params.include?(:scene_id)
+      @videos = Video.with_scene_id(params[:scene_id])
 
       respond_to do |format|
         format.json { render :nothing => true }
