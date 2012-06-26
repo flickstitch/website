@@ -35,6 +35,6 @@ class Scene < ActiveRecord::Base
   end
 
   def self.with_project_id(project_id)
-    Scene.where(:project_id => project_id)
+    where(:project_id => project_id)
   end
 end
