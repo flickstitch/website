@@ -138,4 +138,15 @@ describe Video do
     end
   end
 
+  describe ".with_scene_id" do
+    it 'only gets videos for specified scene' do
+      scene = Factory.create(:scene)
+      other_scene = Factory.create(:scene)
+      video = Factory.create(:video, :scene_id => scene.id)
+      other_video = Factory.create(:video, :scene_id => other_scene.id)
+
+      Video.with_scene_id(scene.id).include?(other_video).should == false
+    end
+  end
+
 end

@@ -30,6 +30,10 @@ class Video < ActiveRecord::Base
     downscore
   end
 
+  def self.with_scene_id(scene_id)
+    where(:scene_id => scene_id)
+  end
+
   private
   
   def upscore
