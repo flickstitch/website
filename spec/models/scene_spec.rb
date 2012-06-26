@@ -142,4 +142,17 @@ describe Scene do
     end
   end
 
+  describe '.by_date' do
+    it 'returns list of scenes ordered by date' do
+      project = Factory.create(:project)
+      month3_scene = Factory.create(:scene, :project_id => project.id, :start_date => '2012/03/01')
+      month1_scene = Factory.create(:scene, :project_id => project.id, :start_date => '2012/01/01')
+      month2_scene = Factory.create(:scene, :project_id => project.id, :start_date => '2012/02/01')
+
+      Scene.by_date[0].should == month1_scene
+      Scene.by_date[1].should == month2_scene
+      Scene.by_date[2].should == month3_scene
+    end
+  end
+
 end

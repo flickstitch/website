@@ -6,7 +6,7 @@ class ScenesController < ApplicationController
   # GET /scenes.json
   def index
     if user_signed_in? && (current_user.has_role?(:admin) || current_user.has_role?(:manager))
-      @scenes = Scene.order('project_id desc').order('start_date asc')
+      @scenes = Scene.by_date
 
       respond_to do |format|
         format.html # index.html.erb
