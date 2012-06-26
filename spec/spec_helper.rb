@@ -44,6 +44,7 @@ Spork.prefork do
     # for Devise in controller tests
     config.include Devise::TestHelpers, :type => :controller
     config.include ControllerMacros, :type => :controller
+    config.include LoginHelper, :type => :request
   end
 
 end
