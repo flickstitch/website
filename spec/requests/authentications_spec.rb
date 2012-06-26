@@ -13,7 +13,7 @@ feature "Sign up new user" do
 
     click_button 'sign_up'
 
-    within ".flash-notice" do
+    within ".alert-info" do
       page.should have_content "signed up successfully"
     end
   end
@@ -47,7 +47,7 @@ feature "login" do
 
     click_button "sign_in"
 
-    within ".flash-notice" do
+    within ".alert-info" do
       page.should have_content "Signed in successfully"
     end
 
@@ -64,7 +64,7 @@ feature "login" do
 
     click_button "sign_in"
 
-    within ".flash-alert" do
+    within ".alert-warning" do
       page.should have_content "Invalid email or password"
     end
   end
