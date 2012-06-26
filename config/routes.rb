@@ -36,12 +36,6 @@ Collabio::Application.routes.draw do
   match "terms" => 'pages#terms'
   match "privacy" => 'pages#privacy'
 
-  match 'mockscene1' => 'pages#mockscene1'
-  match 'mockscene2' => 'pages#mockscene2'
-  match 'mockvote' => 'pages#mockvote'
-  match 'mocksubmit' => 'pages#mocksubmit'
-  match 'mocknone' => 'pages#mocknone'
-
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
