@@ -5,7 +5,7 @@ class ScenesController < ApplicationController
   # GET /scenes
   # GET /scenes.json
   def index
-    if user_signed_in? && (current_user.has_role?(:admin) || current_user.has_role?(:manager))
+    if params.include?(:project_id)
       @scenes = Scene.by_date
 
       respond_to do |format|
