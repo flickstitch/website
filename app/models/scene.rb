@@ -33,4 +33,8 @@ class Scene < ActiveRecord::Base
   def self.by_date
     order('project_id desc').order('start_date asc')
   end
+
+  def self.with_project_id(project_id)
+    Scene.where(:project_id => project_id)
+  end
 end

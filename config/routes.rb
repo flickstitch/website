@@ -1,5 +1,7 @@
 Collabio::Application.routes.draw do
-  resources :scenes
+  resources :projects do
+    resources :scenes
+  end
 
   resources :projects
 

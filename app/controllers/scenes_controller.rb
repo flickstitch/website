@@ -6,7 +6,7 @@ class ScenesController < ApplicationController
   # GET /scenes.json
   def index
     if params.include?(:project_id)
-      @scenes = Scene.by_date
+      @scenes = Scene.with_project_id(params[:project_id]).by_date
 
       respond_to do |format|
         format.html # index.html.erb
