@@ -155,4 +155,15 @@ describe Scene do
     end
   end
 
+  describe '.with_project_id' do
+    it 'gets only scenes from specific project' do
+      project = Factory.create(:project)
+      other_project = Factory.create(:project)
+      scene = Factory.create(:scene, :project_id => project.id)
+      other_scene = Factory.create(:scene, :project_id => other_project.id)
+
+      Scene.with_project_id(project.id).include?(other_scene).should == false
+    end
+  end
+
 end
