@@ -12,6 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require videos
+//= require projects
 //= require twitter/bootstrap
 //= require knockout-2.1.0

@@ -1,25 +1,21 @@
 = render :partial => '/shared/project_scene_menu', :locals => { project:@project }
 
--# basically a horizontal version of project_scene menu
-- current_date = DateTime.now
+knockout stuff goes here
+.row
+  .span2
+    list of vids
+    .video-list(data-bind="template: { name: 'videos-template', foreach: videos }")
+    %script(type="text/html" id="videos-template")
+      %div(data-bind='text: id')
+      %div(data-bind='text: name')
+      %div(data-bind='text: score')
+      %img(data-bind="attr: { src: thumbnail_url }")
 
-- @project.scenes.each do |scene|
-  .box
-    -if scene.is_vote_time?(current_date)
-      = link_to image_tag(asset_path('video-vote.png')), scene_path(scene)
-      = link_to scene.name, scene_path(scene)
-    -elsif scene.is_submit_time?(current_date)
-      = link_to image_tag(asset_path('video-submit.png')), new_video_path(:scene_id => scene)
-      = link_to scene.name, new_video_path(:scene_id => scene)
-    -elsif scene.is_unavailable_time?(current_date)
-      = link_to image_tag(asset_path('video-none.png')), scene_path(scene)
-      = link_to scene.name, scene_path(scene)
-    -elsif scene.is_closed_time?(current_date)
-      -if scene.videos.blank?
-        = link_to image_tag(asset_path("video-none-submitted.png")), scene_path(scene)
-      -else
-        = link_to image_tag("#{scene.videos.first.thumbnail_url}"), video_path(scene.videos.first)
-      = link_to scene.name, scene_path(scene)
+  .span10
+    #project-synopsis
+      %strong
+        project synopsis: 
+      = @project.desc
+    %br
 
-      -if scene.videos.blank?
-        none submitted
+%div.project-meta(data-video-url="something")
