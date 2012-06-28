@@ -9,7 +9,7 @@ class VideosController < ApplicationController
       @videos = Video.with_scene_id(params[:scene_id])
 
       respond_to do |format|
-        format.json { render :nothing => true }
+        format.json { render :json => @videos }
         format.html # index.html.erb
       end
     else
