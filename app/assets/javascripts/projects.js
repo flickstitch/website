@@ -11,7 +11,6 @@ $(document).ready(function() {
         url: url,
         dataType: 'json',
         complete: function(response, status) {
-          //console.log(response.responseText);
           parsed_videos = JSON.parse(response.responseText);
           self.videos(parsed_videos);
         }
