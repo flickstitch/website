@@ -4,12 +4,13 @@
   .span2
     %h4 Submissions
     .video-list(data-bind="foreach: videos, fade_videos_in: videos")
-      %span(data-bind='text: name')
-      %br
       score
       %span(data-bind='text: score')
-      %img(data-bind="attr: { src: thumbnail_url }")
-      = link_to "video details", video_path
+      %br
+      %a(data-bind="click: $parent.click_video_menu")
+        %img(data-bind="attr: { src: thumbnail_url }")
+      %br
+      %a(data-bind="click: $parent.click_video_menu, text: name")
       %hr
 
   .span10
@@ -19,4 +20,11 @@
       = @project.desc
     %br
 
-%div.project-meta(data-video-url="something")
+    .video-details(data-bind="template: { data: video }, fade_videos_in: video")
+      %div(data-bind="text: name")
+      %div(data-bind="text: actors")
+      %div(data-bind="text: created_at")
+      %div(data-bind="text: video_url")
+
+
+%div.project-meta(data-video-url="#{video_url}")

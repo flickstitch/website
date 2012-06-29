@@ -4,7 +4,8 @@ $(document).ready(function() {
     var self = this;
 
     self.videos = ko.observableArray();
-      var self = this;
+    self.video = ko.observable({name:'', actors:'', created_at:'', video_url:''});
+
     self.click_scene_menu = function(data, event) {
       url = event.delegateTarget.href;
 
@@ -16,6 +17,18 @@ $(document).ready(function() {
           self.videos(parsed_videos);
         }
       })
+    }
+
+    self.click_video_menu = function(data, event) {
+      var video_id = data.id;
+      //var video_url = "/videos/" + video_id;
+
+      //$.ajax({
+        //url: video_url,
+        //dataType: 'json',
+
+      console.log(ko.toJSON(data));
+      self.video(data);
     }
   }
 
