@@ -2,13 +2,13 @@
 
 .row
   .span2
-    list of vids
-    .video-list(data-bind="template: { name: 'videos-template', foreach: videos }, fade_videos_in: videos")
-    %script(type="text/html" id="videos-template")
+    Submissions
+    .video-list(data-bind="foreach: videos, fade_videos_in: videos")
       %div(data-bind='text: id')
       %div(data-bind='text: name')
       %div(data-bind='text: score')
       %img(data-bind="attr: { src: thumbnail_url }")
+      = link_to "video details", video_path
 
   .span10
     #project-synopsis
