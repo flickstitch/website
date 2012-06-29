@@ -1,10 +1,11 @@
 $(document).ready(function() {
 
   function ProjectsViewModel() {
-    this.videos = ko.observableArray();
+    var self = this;
 
-    this.click_scene_menu = function(data, event) {
+    self.videos = ko.observableArray();
       var self = this;
+    self.click_scene_menu = function(data, event) {
       url = event.delegateTarget.href;
 
       $.ajax({
