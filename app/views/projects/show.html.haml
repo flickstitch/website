@@ -4,7 +4,7 @@ knockout stuff goes here
 .row
   .span2
     list of vids
-    .video-list(data-bind="template: { name: 'videos-template', foreach: videos }")
+    .video-list(data-bind="template: { name: 'videos-template', foreach: videos }, fade_videos_in: videos")
     %script(type="text/html" id="videos-template")
       %div(data-bind='text: id')
       %div(data-bind='text: name')

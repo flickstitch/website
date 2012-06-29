@@ -18,5 +18,13 @@ $(document).ready(function() {
     }
   }
 
+  ko.bindingHandlers.fade_videos_in = {
+    update: function(element, valueAccessor) {
+      ko.utils.unwrapObservable(valueAccessor());
+      $(element).css('display', 'none');
+      $(element).fadeIn();
+    }
+  }
+
   ko.applyBindings(new ProjectsViewModel());
 });
