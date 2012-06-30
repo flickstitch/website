@@ -34,6 +34,10 @@ class Video < ActiveRecord::Base
     where(:scene_id => scene_id)
   end
 
+  def comment_threads_by_date
+    comment_threads.order("created_at DESC")
+  end
+
   private
   
   def upscore

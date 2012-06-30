@@ -149,4 +149,21 @@ describe Video do
     end
   end
 
+  describe ".comment_threads_by_date" do
+    it 'orders comments by newest first' do
+      # 2 users needed otherwise spam protection will kick in
+      user1 = Factory.create(:user)
+      user2 = Factory.create(:user)
+      video = Factory.create(:video)
+      comment1 = Comment.build_from(video, user1.id, "comment1")
+      comment1.save
+      comment2 = Comment.build_from(video, user2.id, "comment2")
+      comment2.save
+
+      comments = video.comment_threads_by_date
+
+      comments[0].should == comment2
+      comments[1].should == comment1
+    end
+  end
 end

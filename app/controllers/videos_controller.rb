@@ -21,7 +21,7 @@ class VideosController < ApplicationController
   # GET /videos/1.json
   def show
     @video = Video.find(params[:id])
-    @comments = @video.comment_threads.order("created_at DESC")
+    @comments = @video.comment_threads_by_date
 
     respond_to do |format|
       format.html # show.html.erb
