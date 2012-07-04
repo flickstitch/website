@@ -25,7 +25,9 @@ class VideosController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @video }
+      format.json do 
+        render :json => { :video => @video, :comments => @comments.to_json(:include => :user) }
+      end
     end
   end
 

@@ -35,7 +35,7 @@ class Video < ActiveRecord::Base
   end
 
   def comment_threads_by_date
-    comment_threads.order("created_at DESC")
+    comment_threads(:include => :users).order("created_at DESC")
   end
 
   private

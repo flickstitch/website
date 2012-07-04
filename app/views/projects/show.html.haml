@@ -26,5 +26,12 @@
       %div(data-bind="text: created_at")
       %div(data-bind="text: video_url")
 
+    %hr
+    %h4 comments
+    .comments(data-bind="foreach: comments, fade_videos_in: comments")
+      %div(data-bind="text: body")
+      by
+      %span(data-bind="text: user.username")
+      %hr
 
 %div.project-meta(data-video-url="#{video_url}")
