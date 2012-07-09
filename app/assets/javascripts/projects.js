@@ -38,13 +38,14 @@ $(document).ready(function() {
         success: function(data, status, xhr) {
           video_and_comments = JSON.parse(xhr.responseText);
           console.log(video_and_comments);
+
           parsed_comments = JSON.parse(video_and_comments.comments);
           self.comments(parsed_comments);
+
+          parsed_video = JSON.parse(video_and_comments.video);
+          self.video(parsed_video);
         }
       })
-
-      //console.log(ko.toJSON(data));
-      self.video(data);
     }
   }
 

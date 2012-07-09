@@ -1,6 +1,8 @@
 require 'open-uri'
 
 class Video < ActiveRecord::Base
+  attr_accessor :embed_url, :from_youtube, :from_vimeo
+
   # thumbs_up gem
   acts_as_voteable
 
@@ -18,6 +20,14 @@ class Video < ActiveRecord::Base
   before_save :set_video_id, :set_thumbnail_url
 
   default_scope where(:visible => true).order('id desc')
+
+  def embed_url
+    if from_youtube
+      "http://www.youtube.com/embed/#{video_id}"
+    else
+      "http://player.vimeo.com/video/#{video_id}"
+    end
+  end
 
   def upvote_by_user(current_user)
     current_user.clear_votes self
@@ -38,12 +48,12 @@ class Video < ActiveRecord::Base
     comment_threads(:include => :users).order("created_at DESC")
   end
 
-  def from_youtube?
+  def from_youtube
     uri = URI.parse(self.video_url)
     uri.host.include?('youtube.com') || uri.host.include?('youtu.be')
   end
 
-  def from_vimeo?
+  def from_vimeo
     uri = URI.parse(self.video_url)
     uri.host.include?('vimeo.com')
   end
