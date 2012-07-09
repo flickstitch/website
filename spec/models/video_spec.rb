@@ -166,4 +166,27 @@ describe Video do
       comments[1].should == comment1
     end
   end
+
+  describe ".from_youtube?" do
+    it 'true for videos from youtube.com' do
+      url = "http://www.youtube.com"
+      v = Factory.build(:video, :video_url => url)
+      v.should be_from_youtube
+    end
+
+    it 'true for videos from youtu.be' do
+      url = "http://www.youtu.be"
+      v = Factory.build(:video, :video_url => url)
+      v.should be_from_youtube
+    end
+  end
+
+  describe ".from_vimeo?" do
+    it 'true for videos from vimeo urls' do
+      url = "http://vimeo.com"
+      v = Factory.build(:video, :video_url => url)
+      v.should be_from_vimeo
+    end
+    
+  end
 end

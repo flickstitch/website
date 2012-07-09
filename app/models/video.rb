@@ -38,6 +38,16 @@ class Video < ActiveRecord::Base
     comment_threads(:include => :users).order("created_at DESC")
   end
 
+  def from_youtube?
+    uri = URI.parse(self.video_url)
+    uri.host.include?('youtube.com') || uri.host.include?('youtu.be')
+  end
+
+  def from_vimeo?
+    uri = URI.parse(self.video_url)
+    uri.host.include?('vimeo.com')
+  end
+
   private
   
   def upscore
