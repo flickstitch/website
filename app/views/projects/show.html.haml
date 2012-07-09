@@ -20,7 +20,7 @@
       = @project.desc
     %br
 
-    #video-pane
+    #video-pane(data-bind='visible: show_video_pane')
       .video-details(data-bind="template: { data: video }, fade_videos_in: video")
         <!-- ko if: from_vimeo -->
         <iframe data-bind="attr: { src: embed_url }" width="560" height="315" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
@@ -42,5 +42,8 @@
         by
         %span(data-bind="text: user.username")
         %hr
+    #select-video-pane(data-bind='visible: show_select_video_pane')
+      %h2
+        \<== select a video
 
 %div.project-meta(data-video-url="#{video_url}")

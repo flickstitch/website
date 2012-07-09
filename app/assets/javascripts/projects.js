@@ -3,6 +3,8 @@ $(document).ready(function() {
   function ProjectsViewModel() {
     var self = this;
 
+    self.show_video_pane = ko.observable(false);
+    self.show_select_video_pane = ko.observable(false);
     self.videos = ko.observableArray();
     self.video = ko.observable({name:'', 
                                 actors:'', 
@@ -24,6 +26,9 @@ $(document).ready(function() {
         success: function(data, status, xhr) {
           parsed_videos = JSON.parse(xhr.responseText);
           self.videos(parsed_videos);
+
+          self.show_video_pane(false);
+          self.show_select_video_pane(true);
         }
       })
     }
@@ -44,6 +49,9 @@ $(document).ready(function() {
 
           parsed_video = JSON.parse(video_and_comments.video);
           self.video(parsed_video);
+
+          self.show_video_pane(true);
+          self.show_select_video_pane(false);
         }
       })
     }
