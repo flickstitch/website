@@ -167,25 +167,25 @@ describe Video do
     end
   end
 
-  describe ".from_youtube?" do
+  describe ".from_youtube" do
     it 'true for videos from youtube.com' do
       url = "http://www.youtube.com"
       v = Factory.build(:video, :video_url => url)
-      v.should be_from_youtube
+      v.from_youtube.should == true
     end
 
     it 'true for videos from youtu.be' do
       url = "http://www.youtu.be"
       v = Factory.build(:video, :video_url => url)
-      v.should be_from_youtube
+      v.from_youtube.should == true
     end
   end
 
-  describe ".from_vimeo?" do
+  describe ".from_vimeo" do
     it 'true for videos from vimeo urls' do
       url = "http://vimeo.com"
       v = Factory.build(:video, :video_url => url)
-      v.should be_from_vimeo
+      v.from_vimeo.should == true
     end
     
   end
