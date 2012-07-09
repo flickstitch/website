@@ -4,7 +4,13 @@ $(document).ready(function() {
     var self = this;
 
     self.videos = ko.observableArray();
-    self.video = ko.observable({name:'', actors:'', created_at:'', video_url:''});
+    self.video = ko.observable({name:'', 
+                                actors:'', 
+                                created_at:'', 
+                                video_url:'', 
+                                embed_url:'', 
+                                from_vimeo:'', 
+                                from_youtube:''});
     self.comments = ko.observableArray();
 
     self.click_scene_menu = function(data, event) {
