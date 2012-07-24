@@ -50,6 +50,8 @@ GEM
     awesome_nested_set (2.1.2)
       activerecord (>= 3.0.0)
     bcrypt-ruby (3.0.1)
+    bourbon (2.1.1)
+      sass (>= 3.1)
     builder (3.0.0)
     cancan (1.6.7)
     capybara (1.1.2)
@@ -216,6 +218,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_commentable_with_threading!
+  bourbon
   cancan
   capybara
   coffee-rails (~> 3.2.1)
