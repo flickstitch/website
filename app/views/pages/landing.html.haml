@@ -1,14 +1,13 @@
-explain simply what our website is about
-
-%ol
-  %li submit
-  %li vote
-  %li collaborate
-
-= link_to "Login", new_user_session_path
-%br
-%br
-= link_to "Register", new_user_registration_path
-%br
-%br
-= link_to "Continue without signing in/registering", home_path
+#hero
+  #hero-container
+    %table
+      %tr
+        %td
+          CREATE.
+          = image_tag asset_path('icon1.png')
+        %td
+          SUBMIT.
+          = image_tag asset_path('icon2.png')
+        %td
+          VOTE.
+          = image_tag asset_path('icon3.png')

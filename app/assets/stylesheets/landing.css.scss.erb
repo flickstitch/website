@@ -1,0 +1,61 @@
+body#landing {
+  background-color: #333;
+  color: #ccc;
+  margin: auto;
+  font-family: 'Book Antigua';
+}
+
+#landing {
+  #snapper {
+    text-align: center;
+  }
+
+  .noise {
+    background: url('noise.png');
+  }
+
+  .gradient {
+    background: -webkit-radial-gradient(top, ellipse cover, #333 0%,#fff 700px);
+  }
+
+  .noise, .gradient {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  table {
+    width: 100%;
+
+    td {
+      width: 33%;
+    }
+  }
+
+  #hero {
+    background: url('hero-bg.png');
+    height: 286;
+
+    #hero-container {
+      width: 820px;
+      padding-top: 25px;
+      margin: auto;
+
+      table{
+        width: 100%;
+        text-align: center;
+
+        td {
+          font-size: 45px;
+
+          img {
+            padding-top: 10px;
+          }
+        }
+      }
+    }
+  }
+}
