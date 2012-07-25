@@ -6,7 +6,8 @@ $(document).ready(function() {
     self.show_video_pane = ko.observable(false);
     self.show_select_video_pane = ko.observable(false);
     self.videos = ko.observableArray();
-    self.video = ko.observable({name:'', 
+    self.video = ko.observable({id:'',
+                                name:'', 
                                 actors:'', 
                                 created_at:'', 
                                 video_url:'', 

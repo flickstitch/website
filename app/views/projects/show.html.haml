@@ -30,20 +30,37 @@
         <iframe data-bind="attr: { src: embed_url}" width="560" height="315" frameborder="0" allowfullscreen></iframe>
         <!-- /ko -->
 
+        -# hidden video_id for comment form submission
+        %div(data-bind="text: id" id='video_id' style="display:none")
         %div(data-bind="text: name")
         %div(data-bind="text: actors")
         %div(data-bind="text: created_at")
         %div(data-bind="text: video_url")
 
       %hr
+
       %h4 comments
+      %p
+        -if current_user
+          this is a test
+          %div(data-bind="text: video.id")
+
+          #comment_form
+            -# note: id for video in form_tag is wrong. it's incorrectly using the project id
+            = form_tag add_comment_video_path, :remote => true do
+              = text_area_tag "comment"
+              = button_tag "add comment", :class => "btn", :id => "comment_submit"
+        -else
+          #video-show-sign-in
+            = link_to "Sign in", new_user_session_path
+            to comment
+
       .comments(data-bind="foreach: comments, fade_videos_in: comments")
         %div(data-bind="text: body")
         by
         %span(data-bind="text: user.username")
         %hr
+
     #select-video-pane(data-bind='visible: show_select_video_pane')
       %h2
-        \<== select a video
-
-%div.project-meta(data-video-url="#{video_url}")
+        select a video from left
