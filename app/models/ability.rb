@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     # guest/anon user - not logged in
     if user.nil?
-      can :read, Video
+      can [:read, :comments], Video
       cannot [:new, :edit], Video
 
       can :read, Scene

@@ -32,6 +32,13 @@ class VideosController < ApplicationController
     end
   end
 
+  def comments
+    video = Video.find(params[:id])
+    comments = video.comment_threads_by_date
+    comment_partial = render_to_string :partial => comments, :spacer_template => "comments/comment_separator"
+    render :json => { :text => comment_partial }, :status => 200
+  end
+
   # GET /videos/new
   # GET /videos/new.json
   def new
@@ -129,7 +136,7 @@ class VideosController < ApplicationController
   end
 
   def add_comment
-    video = Video.find(params[:id])
+    video = Video.find(params[:video][:id])
     text = params[:comment]
     comment = Comment.build_from(video, current_user.id, text)
 

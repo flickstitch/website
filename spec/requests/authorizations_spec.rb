@@ -23,6 +23,17 @@ feature 'view scene listing page' do
         end
       end
     end
+
+    context 'visiting /videos/1/comments' do
+      scenario 'able to view comments' do
+        video = Factory.create(:video)
+
+        visit "/videos/#{video.id}/comments"
+
+        # get back json data
+        page.should have_content 'text'
+      end
+    end
   end
 
 end
