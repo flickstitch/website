@@ -1,6 +1,6 @@
 class VideosController < ApplicationController
   # cancan
-  load_and_authorize_resource
+  load_and_authorize_resource :except => [:add_comment]
 
   # GET /videos
   # GET /videos.json
