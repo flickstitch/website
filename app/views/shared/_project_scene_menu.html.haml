@@ -1,28 +1,4 @@
--# prev_next project menu
-.row
-  .span2
-    = link_to "previous projects", projects_path, { class:'btn' }
-  .span8
-    #project-title
-      current project: 
-      .title
-        = link_to project.name, project_path(project)
-      -# show only for admin or manager
-      = render :partial => "/shared/if_admin_or_manager", :locals => { link_text:"Edit Project: #{project.name}", link_path:edit_project_path(project) }
-      &nbsp;
-      &nbsp;
-      &nbsp;
-      = render :partial => "/shared/if_admin_or_manager", :locals => { link_text:"New Project", link_path:new_project_path }
-      &nbsp;
-      &nbsp;
-      &nbsp;
-      = render :partial => "/shared/if_admin_or_manager", :locals => { link_text:"New Scene", link_path:new_scene_path }
-
-      %br
-
-  .span2
-    .pull-right
-      = link_to "upcoming projects", '#', { class:'btn', disabled:true }
-
 -# scene menu
-= render :partial => 'shared/project_scenes', :locals => { project:project }
+.row
+  .span12
+    = render :partial => 'shared/project_scenes', :locals => { project:project }

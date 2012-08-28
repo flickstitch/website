@@ -36,6 +36,24 @@
               = link_to "PREVIOUS PROJECTS", projects_path
             #upcom-project
               = link_to "UPCOMING PROJECTS", '#'
+            #project-title
+              - project = @project
+              - if @project.nil?
+                n/a
+              - else
+                .title
+                  = link_to project.name, project_path(project)
+                -# show only for admin or manager
+                = render :partial => "/shared/if_admin_or_manager", :locals => { link_text:"Edit Project: #{project.name}", link_path:edit_project_path(project) }
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                = render :partial => "/shared/if_admin_or_manager", :locals => { link_text:"New Project", link_path:new_project_path }
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                = render :partial => "/shared/if_admin_or_manager", :locals => { link_text:"New Scene", link_path:new_scene_path }
+
       .row(style="margin-top:7px")
         .span2
 

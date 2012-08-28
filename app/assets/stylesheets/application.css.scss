@@ -26,7 +26,10 @@ body {
 }
 
 #project-title {
+  clear: left;
   text-align: center;
+  padding-top: 37px;
+  padding-left: 20px;
 
   .title {
     font-size: $font-size * 1.5;
