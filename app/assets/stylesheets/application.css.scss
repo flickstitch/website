@@ -64,7 +64,15 @@ body {
   }
 }
 
+#filmstrip {
+  background: url('filmstrip.png') center no-repeat;
+  margin-top: -32px;
+  height: 257px;
+  padding-left: 200px;
+}
+
 #scene-menu {
+  margin-top: -134px;
   text-align: center;
 
   .active {
@@ -75,6 +83,7 @@ body {
     width: 120px;
     display: inline-block;
     vertical-align: top;
+    background-color: #444;
 
     img {
       width: 120px;
