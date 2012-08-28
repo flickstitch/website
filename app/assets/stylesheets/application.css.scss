@@ -6,6 +6,13 @@
 @import "videos";
 @import "landing";
 
+@mixin white-anchors {
+  a {
+    color: white;
+    &:hover { color: #ccc }
+  }
+}
+
 body {
   background: url('site-bg.png');
 
@@ -43,10 +50,12 @@ body {
   }
 
   #prev-project {
+    @include white-anchors;
     float: left;
-    margin-left: 91px;
+    margin-left: 85px;
   }
   #upcom-project {
+    @include white-anchors;
     float: left;
     margin-left: 365px;
   }
