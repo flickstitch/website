@@ -30,15 +30,14 @@
       .row
         .span12
           #top-can
+            #sign-in-nav
+              = render :partial => "shared/signin_nav"
             #prev-project
               PREVIOUS PROJECTS
             #upcom-project
               UPCOMING PROJECTS
       .row(style="margin-top:7px")
         .span2
-          = render :partial => "shared/signin_nav"
-        .span8(style="text-align:center;font-size:20pt;height:40px;")
-          %a.brand{:href => root_path}Flick Stitch
 
       .yield-content(style="clear:both;")
         = yield

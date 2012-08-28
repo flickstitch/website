@@ -34,9 +34,17 @@ body {
   font-size: 12px;
   line-height: 25px;
 
+  #sign-in-nav {
+    float: left;
+
+    #sign-in-nav-divider {
+      color: #ccc;
+    }
+  }
+
   #prev-project {
     float: left;
-    margin-left: 161px;
+    margin-left: 91px;
   }
   #upcom-project {
     float: left;

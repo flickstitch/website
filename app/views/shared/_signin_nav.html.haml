@@ -4,5 +4,6 @@
   = link_to "Log Off &middot;".html_safe + " #{current_user.username}", destroy_user_session_path, :method => :delete
 - else
   = link_to "Sign In", new_user_session_path
-  &nbsp;
+  %span#sign-in-nav-divider
+    &nbsp;|&nbsp;
   = link_to "Join", new_user_registration_path
