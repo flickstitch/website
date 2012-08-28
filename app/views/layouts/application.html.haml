@@ -33,9 +33,9 @@
             #sign-in-nav
               = render :partial => "shared/signin_nav"
             #prev-project
-              PREVIOUS PROJECTS
+              = link_to "PREVIOUS PROJECTS", projects_path
             #upcom-project
-              UPCOMING PROJECTS
+              = link_to "UPCOMING PROJECTS", '#'
       .row(style="margin-top:7px")
         .span2
 
