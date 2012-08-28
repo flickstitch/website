@@ -7,6 +7,8 @@
 @import "landing";
 
 body {
+  background: url('site-bg.png');
+
   .navbar-inner {
     border-radius: 0;
   }
@@ -22,6 +24,23 @@ body {
   .title {
     font-size: $font-size * 1.5;
     font-weight: bold;
+  }
+}
+
+#top-can {
+  background: url('center-header.png') center no-repeat;
+  height: 157px;
+  color: white;
+  font-size: 12px;
+  line-height: 25px;
+
+  #prev-project {
+    float: left;
+    margin-left: 161px;
+  }
+  #upcom-project {
+    float: left;
+    margin-left: 365px;
   }
 }
 
